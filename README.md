@@ -23,6 +23,6 @@ En esta carpeta "hardware" se colocan los archivos referentes a los diferentes c
 ### [Software](https://github.com/USB-EC3883-III-2019/EC3883-G05/tree/master/software)
 En esta carpeta "software" esta incluido el desarrollo en software para pc en MATLAB para la interfaz gráfica.
 
-
+Leer [anteproyecto](https://github.com/USB-EC3883-III-2019/EC3883-G05/wiki), para mayor información sobre el diseño de la implementación de hardware como de software con respecto a el proyecto 1.
 
 
