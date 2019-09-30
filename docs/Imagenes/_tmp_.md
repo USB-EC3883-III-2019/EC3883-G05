@@ -112,3 +112,18 @@ cond3(no)->cond4
 cond4(yes)->op3
 cond4(no)->cond2
 ````
+##Rutinas
+###Desempaquetado de datos
+````flow
+st=>subroutine: Desempaquetado de datos
+e=>end: Return
+cond1=>condition: Dato > 0
+op1=>operation: Sync Data
+Separar Bytes
+Mascaras para extraer datos 
+io=>inputoutput: Asignar valores a variables
+st->cond1
+cond1(yes)->op1->io->e
+cond1(no)->cond1
+
+````
