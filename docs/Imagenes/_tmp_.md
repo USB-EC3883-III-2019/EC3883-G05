@@ -86,3 +86,29 @@ cond2(no)->op2->op5->e
 cond3(yes)->op3->op2->op5->e
 cond3(no)->op2->op5->e
 ````
+## Programa principal Software
+````flow
+st=>start: Start
+e=>end
+op1=>operation: Configurar entorno:
+• Puerto Serial
+• Callbacks
+• Crear plot
+op2=>subroutine: Desempaquetar y procesar datos
+cond1=>condition: ¿Data recibida?
+cond2=>condition: ¿SONAR ON?
+cond3=>condition: ¿LIDAR ON?
+cond4=>condition: ¿FUSION ON?
+op3=>operation: Actualizar plot
+
+st->op1->cond1
+cond1(yes)->op2
+cond1(no)->cond1
+op2->cond2
+cond2(yes)->op3->e
+cond2(no)->cond3
+cond3(yes)->op3
+cond3(no)->cond4
+cond4(yes)->op3
+cond4(no)->cond2
+````
