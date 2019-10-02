@@ -112,9 +112,9 @@ cond3(no)->cond4
 cond4(yes)->op3
 cond4(no)->cond2
 ````
-##Rutinas
+## Rutinas
 
-###Desempaquetado de datos
+### Desempaquetado de datos
 ````flow
 st=>subroutine: Desempaquetado de datos
 e=>end: Return
