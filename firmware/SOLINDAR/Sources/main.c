@@ -38,6 +38,7 @@
 #include "IO_Map.h"
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
+#include "../Project_Headers/Frame.h"
 
 void main(void)
 {
@@ -49,6 +50,16 @@ void main(void)
 
   /* Write your code here */
   /* For example: for(;;) { } */
+
+  POSITION_DATA = 45;
+  LIDAR_DATA = 512;
+  SONAR_DATA = 127;
+
+
+  Pack(&Frame, Data);       // Pack the data
+  for(;;){
+  }
+
 
   /*** Don't write any code pass this line, or it will be deleted during code generation. ***/
   /*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/
