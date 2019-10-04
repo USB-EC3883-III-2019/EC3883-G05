@@ -14,6 +14,10 @@ Module "AS1"       (component AsynchroSerial)
                 method only stores data into an output buffer. In case of a zero output buffer size, only one character can be 
                 stored. Enabling the component (Enable method) starts the transmission of the stored data. This method is 
                 available only if the transmitter property is enabled.
+   - AS1_SendBlock -Sends a block of characters to the channel.  This method is available only if non-zero length of the output 
+                buffer is defined and the transmitter property is enabled.
+   - AS1_ClearTxBuf -Clears the transmit buffer.  This method is available only if non-zero length of the output buffer is 
+                defined and the receiver property is enabled.
    - AS1_GetCharsInRxBuf -Returns the number of characters in the input buffer. This method is available only if the receiver 
                 property is enabled.
    - AS1_GetCharsInTxBuf -Returns the number of characters in the output buffer. This method is available only if the 
