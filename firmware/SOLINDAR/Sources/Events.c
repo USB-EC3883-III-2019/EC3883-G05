@@ -33,6 +33,7 @@
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include "../Project_Headers/Frame.h"
+#include "../Project_Headers/Motor.h"
 
 /*
 ** ===================================================================
@@ -105,7 +106,6 @@ void  AS1_OnTxChar(void)
 void  AS1_OnFreeTxBuf(void)
 {
   /* Write your code here ... */
-  AS1_SendBlock(&Frame, FRAME_SIZE, &BufferSerialCount);
 }
 
 /*
@@ -125,7 +125,7 @@ void  AS1_OnFreeTxBuf(void)
 void TI1_OnInterrupt(void)
 {
   /* Write your code here ... */
-
+  MotorState = MOTOR_READY;
 }
 
 /* END Events */

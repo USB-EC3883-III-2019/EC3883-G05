@@ -37,6 +37,7 @@
 #include "PE_Timer.h"
 #include "AS1.h"
 #include "TI1.h"
+#include "Bits1.h"
 
 
 void AS1_OnError(void);

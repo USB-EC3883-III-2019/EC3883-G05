@@ -1075,5 +1075,64 @@ asm(BGND);
       </event>
     </Events>
   </Bean>
+  <Bean name="Bits1" type="BitsIO">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="Bits1" />
+      <Port v="PTC" />
+      <list name="Pins" v="4">
+        <group name="Pin0">
+          <Pin v="PTC0_TPM3CH0" />
+          <Slew_rate_control_for_PTC0 v="no" />
+          <Drive_strength_for_PTC0 v="High" />
+        </group>
+        <group name="Pin1">
+          <Pin v="PTC1_TPM3CH1" />
+          <Slew_rate_control_for_PTC1 v="no" />
+          <Drive_strength_for_PTC1 v="High" />
+        </group>
+        <group name="Pin2">
+          <Pin v="PTC2_TPM3CH2" />
+          <Slew_rate_control_for_PTC2 v="no" />
+          <Drive_strength_for_PTC2 v="High" />
+        </group>
+        <group name="Pin3">
+          <Pin v="PTC3_TPM3CH3" />
+          <Slew_rate_control_for_PTC3 v="no" />
+          <Drive_strength_for_PTC3 v="High" />
+        </group>
+      </list>
+      <Pull_resistor sel_value="no pull resistor">
+        
+autoselected pull
+
+        <EmptySection_DummyValue />
+      </Pull_resistor>
+      <Open_drain v="push-pull" />
+      <Direction v="Output" />
+      <group name="Initialization">
+        <Init__direction v="Output" />
+        <Init__value v="0" />
+      </group>
+      <Safe_mode v="yes" />
+      <Optimization_for v="speed" />
+    </Properties>
+    <Methods>
+      <GetDir v="generate code" />
+      <SetDir v="don&amp;apos;t generate code" />
+      <SetInput v="don&amp;apos;t generate code" />
+      <SetOutput v="don&amp;apos;t generate code" />
+      <GetVal v="generate code" />
+      <PutVal v="generate code" />
+      <GetBit v="generate code" />
+      <PutBit v="generate code" />
+      <SetBit v="generate code" />
+      <ClrBit v="generate code" />
+      <NegBit v="generate code" />
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
+    </Events>
+  </Bean>
 </PE_PROJECT_SETTINGS_DOCUMENTATION>
 

@@ -5,7 +5,10 @@
  *      Author: Anderson
  */
 
+#include "Bits1.h"
 #include "Motor.h"
+
+char MotorState;
 
 char Sequence[8] ={
     0b1010,
@@ -18,35 +21,46 @@ char Sequence[8] ={
     0b0010,
 };
 
+struct StepperMotor Motor;
 
-struct StepperMotor {
-    char Rotation  : 1;
-    char           : 1;
-    char StepCount : 6;
-    char SequenceState;
-    char CW_Limit;
-    char CCW_Limit;
-};
+void InitMotor(){
+    SetOrientation(&Motor, CW_ROTATION);
+    SetCWLimit(&Motor, CW_LIMIT);
+    SetCCWLimit(&Motor, CCW_LIMIT);
+    Motor.Port_Func = &Bits1_PutVal;
+}
 
 void SetOrientation(struct StepperMotor *Motor, char Orientation) {
     Motor->Rotation = Orientation;
 };
 
+void SetCWLimit(struct StepperMotor *Motor, signed char Limit) {
+    Motor->CW_Limit = Limit;
+};
+
+void SetCCWLimit(struct StepperMotor *Motor, signed char Limit) {
+    Motor->CCW_Limit = Limit;
+};
+
 char StepMotor(struct StepperMotor *Motor) {
     if (Motor->Rotation == CW_ROTATION) {
-        if (Motor->StepCount > Motor->CW_Limit) {
+        if (Motor->StepCount == Motor->CW_Limit) {
             return STEP_LIMIT;
         }
-        Motor->SequenceState++;
-    } else {
-        if (Motor->StepCount < Motor->CCW_Limit) {
-            return STEP_LIMIT;
+        Motor->StepCount++;
+        if(Motor->StateSequence++ == 7){
+            Motor->StateSequence = 0;
         }
-        Motor->SequenceState--;
     }
-    Q1 = SEC_MASK_Q1 & Sequence[Motor->SequenceState];
-    Q2 = SEC_MASK_Q2 & Sequence[Motor->SequenceState];
-    Q3 = SEC_MASK_Q3 & Sequence[Motor->SequenceState];
-    Q4 = SEC_MASK_Q4 & Sequence[Motor->SequenceState];
+    else {
+        if (Motor->StepCount == Motor->CCW_Limit) {
+            return STEP_LIMIT;
+        }
+        Motor->StepCount--;
+        if(Motor->StateSequence-- == 0){
+            Motor->StateSequence = 7;
+        }
+    }
+    (*Motor->Port_Func)(Sequence[Motor->StateSequence]);
     return STEP_OK;
 };
