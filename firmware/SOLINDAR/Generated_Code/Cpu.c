@@ -7,7 +7,7 @@
 **     Version     : Component 01.003, Driver 01.40, CPU db: 3.00.067
 **     Datasheet   : MC9S08QE128RM Rev. 2 6/2007
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-10-03, 20:46, # CodeGen: 7
+**     Date/Time   : 2019-10-04, 20:16, # CodeGen: 16
 **     Abstract    :
 **         This component "MC9S08QE128_80" contains initialization 
 **         of the CPU and provides basic methods and events for 
@@ -67,10 +67,12 @@
 #pragma MESSAGE DISABLE C4002 /* WARNING C4002: Result not used is ignored */
 
 #include "AS1.h"
+#include "TI1.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
+#include "PE_Timer.h"
 #include "Events.h"
 #include "Cpu.h"
 
@@ -244,6 +246,8 @@ void PE_low_level_init(void)
   /* ### Shared modules init code ... */
   /* ### Asynchro serial "AS1" init code ... */
   AS1_Init();
+  /* ### TimerInt "TI1" init code ... */
+  TI1_Init();
   CCR_lock = (byte)0;
   __EI();                              /* Enable interrupts */
 }
