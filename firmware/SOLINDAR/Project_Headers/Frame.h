@@ -42,15 +42,15 @@ extern struct DATA Data;
 
 // Data frame struct
 struct FRAME {
-    byte Syn_0      : 2;
     byte Position   : 6;
-    byte Syn_1      : 1;
+    byte Syn_0      : 2;
     byte Sonar_low  : 7;
-    byte Syn_2      : 1;
-    byte Sonar_high : 2;
+    byte Syn_1      : 1;
     byte Lidar_low  : 5;
-    byte Syn_3      : 1;
+    byte Sonar_high : 2;
+    byte Syn_2      : 1;
     byte Lidar_high : 7;
+    byte Syn_3      : 1;
 };
 extern struct FRAME Frame;
 
