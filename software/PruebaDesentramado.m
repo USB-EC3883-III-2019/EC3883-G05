@@ -19,6 +19,6 @@ sonar_h = bitand(byte2, Mask_sonar_h);
 lidar_l = bitand(byte2, Mask_lidar_l);
 lidar_h = bitand(byte3, Mask_lidar_h);
 
-sonar = uint16(sonar_h)*4 + uint16(sonar_l);
-lidar = uint16(lidar_h)*32 + uint16(lidar_l);
+sonar = uint16(sonar_h)/32+ uint16(sonar_l)*4;
+lidar = uint16(lidar_h) + uint16(lidar_l)*128;
 
