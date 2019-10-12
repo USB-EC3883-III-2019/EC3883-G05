@@ -15,8 +15,7 @@ LidarEval = polyval(LidarPoly, LidarScale*LidarRAW);
 Lidar = LidarEval;
 
 % Sonar conversion
-SonarScale = 1;     % To determinate
+SonarScale = 61.03515625E-02/58.30;
 Sonar = SonarScale*SonarRAW;
-
 end
 
