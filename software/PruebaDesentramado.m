@@ -1,24 +1,35 @@
-databyte = int8(ans);
-start = find(databyte > 0, 1);
-syncData = databyte(start:end-mod((512-start),4)-1);
-syncData = typecast(syncData, 'uint8');
-blocksize = length(syncData)/4;
-byte0 = syncData(1:4:end);
-byte1 = syncData(2:4:end);
-byte2 = syncData(3:4:end);
-byte3 = syncData(4:4:end);
-Mask_posicion(1:blocksize,1) = uint8(63);
-Mask_sonar_l(1:blocksize,1) = uint8(127);
-Mask_sonar_h(1:blocksize,1) = uint8(96);
-Mask_lidar_l(1:blocksize,1) = uint8(31);
-Mask_lidar_h(1:blocksize,1) = uint8(127);
+% Data test
+DataTest = importdata('DataTest.mat');
 
-posicion_d = bitand(byte0, Mask_posicion);
-sonar_l = bitand(byte1, Mask_sonar_l);
-sonar_h = bitand(byte2, Mask_sonar_h);
-lidar_l = bitand(byte2, Mask_lidar_l);
-lidar_h = bitand(byte3, Mask_lidar_h);
+% Random data
+%PositionRAW = [[0:40] [40:-1:0]];
+%LidarRAW = randi([512, 4095], 1, length(PositionRAW));
+%SonarRAW = randi([0, 512], 1, length(PositionRAW));
 
-sonar = uint16(sonar_h)/32+ uint16(sonar_l)*4;
-lidar = uint16(lidar_h) + uint16(lidar_l)*128;
+% Unpack and convert data
+[PositionRAW, LidarRAW, SonarRAW] = unpack(DataTest);
+[Position, Lidar, Sonar] = ConvertData(PositionRAW, LidarRAW, SonarRAW);
 
+
+% Create polaraxes object
+pax = polaraxes;
+
+% First plot and get the chart line object for Lidar and Sonar
+LidarPlot = polarscatter(pax, Position, Lidar, 'filled');
+hold on;
+SonarPlot = polarscatter(pax, Position, Sonar, 'filled');
+legend('Lidar','Sonar');
+
+% Customize the polar axes
+pax.ThetaZeroLocation = 'top';
+pax.ThetaDir = 'clockwise';
+pax.ThetaTickLabel = {'0', '30', '60', '90', '120', '150', '180', '-150', '-120', '-90', '-60', '-30'};
+pax.RLim = [0 200];
+pax.RTick = 0:50:200;
+
+% To update the plot...
+LidarPlot.ThetaData = linspace(0,2*pi(),20);   % Update the theta
+SonarPlot.ThetaData = linspace(0,2*pi(),20);
+
+LidarPlot.RData = linspace(1,80,20);           % Update the Lidar data
+SonarPlot.RData = linspace(150,50,20);         % Update the Sonar data
