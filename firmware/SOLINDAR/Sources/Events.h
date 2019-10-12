@@ -38,6 +38,8 @@
 #include "AS1.h"
 #include "TI1.h"
 #include "Bits1.h"
+#include "AD1.h"
+#include "Cap1.h"
 
 
 void AS1_OnError(void);
@@ -112,6 +114,54 @@ void TI1_OnInterrupt(void);
 **         when the component is enabled - <Enable> and the events are
 **         enabled - <EnableEvent>). This event is enabled only if a
 **         <interrupt service/event> is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void Cap1_OnCapture(void);
+/*
+** ===================================================================
+**     Event       :  Cap1_OnCapture (module Events)
+**
+**     Component   :  Cap1 [Capture]
+**     Description :
+**         This event is called on capturing of Timer/Counter actual
+**         value (only when the component is enabled - <Enable> and the
+**         events are enabled - <EnableEvent>.This event is available
+**         only if a <interrupt service/event> is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void AD1_OnEnd(void);
+/*
+** ===================================================================
+**     Event       :  AD1_OnEnd (module Events)
+**
+**     Component   :  AD1 [ADC]
+**     Description :
+**         This event is called after the measurement (which consists
+**         of <1 or more conversions>) is/are finished.
+**         The event is available only when the <Interrupt
+**         service/event> property is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void Cap1_OnOverflow(void);
+/*
+** ===================================================================
+**     Event       :  Cap1_OnOverflow (module Events)
+**
+**     Component   :  Cap1 [Capture]
+**     Description :
+**         This event is called if counter overflows (only when the
+**         component is enabled - <Enable> and the events are enabled -
+**         <EnableEvent>.This event is available only if a <interrupt
+**         service/event> is enabled.
 **     Parameters  : None
 **     Returns     : Nothing
 ** ===================================================================

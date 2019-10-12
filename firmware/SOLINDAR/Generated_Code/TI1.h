@@ -6,7 +6,7 @@
 **     Component   : TimerInt
 **     Version     : Component 02.161, Driver 01.23, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-10-04, 20:37, # CodeGen: 19
+**     Date/Time   : 2019-10-11, 21:00, # CodeGen: 41
 **     Abstract    :
 **         This component "TimerInt" implements a periodic interrupt.
 **         When the component and its events are enabled, the "OnInterrupt"
@@ -21,7 +21,7 @@
 **
 **         High speed mode
 **             Prescaler               : divide-by-1
-**             Clock                   : 4096 Hz
+**             Clock                   : 2048 Hz
 **           Initial period/frequency
 **             Xtal ticks              : 784
 **             microseconds            : 23926
@@ -30,11 +30,11 @@
 **             Hz                      : 42
 **
 **         Runtime setting             : period/frequency interval (continual setting)
-**             ticks                   : 160 to 1640 ticks
-**             microseconds            : 4883 to 50048 microseconds
-**             milliseconds            : 5 to 50 milliseconds
-**             seconds (real)          : 0.0048828125 to 0.050048828125 seconds
-**             Hz                      : 20 to 204 Hz
+**             ticks                   : 320 to 3280 ticks
+**             microseconds            : 9766 to 100097 microseconds
+**             milliseconds            : 10 to 100 milliseconds
+**             seconds (real)          : 0.009765625 to 0.10009765625 seconds
+**             Hz                      : 10 to 102 Hz
 **
 **         Initialization:
 **              Timer                  : Enabled
@@ -117,21 +117,21 @@
 #include "Cpu.h"
 
 /* PUBLISHED CONSTANTS */
-#define TI1_SPT16_MIN      0xA0U       /* Lower bound of interval for method SetPeriodTicks16 */
+#define TI1_SPT16_MIN      0x0140U     /* Lower bound of interval for method SetPeriodTicks16 */
 #define TI1_SPT16Min       TI1_SPT16_MIN /* Deprecated */
-#define TI1_SPT16_MAX      0x0668U     /* Upper bound of interval for method SetPeriodTicks16 */
+#define TI1_SPT16_MAX      0x0CD0U     /* Upper bound of interval for method SetPeriodTicks16 */
 #define TI1_SPT16Max       TI1_SPT16_MAX /* Deprecated */
-#define TI1_SPT32_MIN      0xA0UL      /* Lower bound of interval for method SetPeriodTicks32 */
+#define TI1_SPT32_MIN      0x0140UL    /* Lower bound of interval for method SetPeriodTicks32 */
 #define TI1_SPT32Min       TI1_SPT32_MIN /* Deprecated */
-#define TI1_SPT32_MAX      0x0668UL    /* Upper bound of interval for method SetPeriodTicks32 */
+#define TI1_SPT32_MAX      0x0CD0UL    /* Upper bound of interval for method SetPeriodTicks32 */
 #define TI1_SPT32Max       TI1_SPT32_MAX /* Deprecated */
-#define TI1_SPUS_MIN       0x1313U     /* Lower bound of interval for method SetPeriodUS */
+#define TI1_SPUS_MIN       0x2626U     /* Lower bound of interval for method SetPeriodUS */
 #define TI1_SPUSMin        TI1_SPUS_MIN /* Deprecated */
-#define TI1_SPUS_MAX       0xC380U     /* Upper bound of interval for method SetPeriodUS */
+#define TI1_SPUS_MAX       0xFFFFU     /* Upper bound of interval for method SetPeriodUS */
 #define TI1_SPUSMax        TI1_SPUS_MAX /* Deprecated */
-#define TI1_SPMS_MIN       0x05U       /* Lower bound of interval for method SetPeriodMS */
+#define TI1_SPMS_MIN       0x0AU       /* Lower bound of interval for method SetPeriodMS */
 #define TI1_SPMSMin        TI1_SPMS_MIN /* Deprecated */
-#define TI1_SPMS_MAX       0x32U       /* Upper bound of interval for method SetPeriodMS */
+#define TI1_SPMS_MAX       0x64U       /* Upper bound of interval for method SetPeriodMS */
 #define TI1_SPMSMax        TI1_SPMS_MAX /* Deprecated */
 
 byte TI1_SetPeriodTicks16(word Ticks);
@@ -149,7 +149,7 @@ byte TI1_SetPeriodTicks16(word Ticks);
 **     Parameters  :
 **         NAME            - DESCRIPTION
 **         Ticks           - Period to set [in Xtal ticks]
-**                      (160 to 1640 ticks)
+**                      (320 to 3280 ticks)
 **     Returns     :
 **         ---             - Error code, possible codes:
 **                           ERR_OK - OK
@@ -175,7 +175,7 @@ byte TI1_SetPeriodTicks32(dword Ticks);
 **     Parameters  :
 **         NAME            - DESCRIPTION
 **         Ticks           - Period to set [in Xtal ticks]
-**                      (160 to 1640 ticks)
+**                      (320 to 3280 ticks)
 **     Returns     :
 **         ---             - Error code, possible codes:
 **                           ERR_OK - OK
@@ -200,7 +200,7 @@ byte TI1_SetPeriodUS(word Time);
 **     Parameters  :
 **         NAME            - DESCRIPTION
 **         Time            - Period to set [in microseconds]
-**                      (4883 to 50048 microseconds)
+**                      (9766 to 65535 microseconds)
 **     Returns     :
 **         ---             - Error code, possible codes:
 **                           ERR_OK - OK
@@ -225,7 +225,7 @@ byte TI1_SetPeriodMS(word Time);
 **     Parameters  :
 **         NAME            - DESCRIPTION
 **         Time            - Period to set [in miliseconds]
-**                      (5 to 50 milliseconds)
+**                      (10 to 100 milliseconds)
 **     Returns     :
 **         ---             - Error code, possible codes:
 **                           ERR_OK - OK

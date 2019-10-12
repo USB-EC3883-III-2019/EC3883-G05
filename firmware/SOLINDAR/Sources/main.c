@@ -33,6 +33,8 @@
 #include "AS1.h"
 #include "TI1.h"
 #include "Bits1.h"
+#include "AD1.h"
+#include "Cap1.h"
 /* Include shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -42,6 +44,7 @@
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include "Frame.h"
 #include "Motor.h"
+#include "Sensor.h"
 
 void main(void)
 {
@@ -54,12 +57,13 @@ void main(void)
   /* Write your code here */
   /* For example: for(;;) { } */
 
-  POSITION_DATA = 45;
-  LIDAR_DATA = 512;
-  SONAR_DATA = 127;
-
+  POSITION_DATA = 63;
+  LIDAR_DATA = 4006;
+  SONAR_DATA = 433;
 
   InitMotor();
+  InitSensor();
+
 
   for(;;){
     if(MotorState == MOTOR_READY){
@@ -72,6 +76,10 @@ void main(void)
           SetOrientation(&Motor, CW_ROTATION);
         }
       }
+
+      MeasureSensors();
+
+      while(SENSORS_STATE != SENSORS_DONE);                   // Wait for the data is ready
 
       Pack(&Frame, Data);                                     // Pack the data
       AS1_SendBlock(&Frame, FRAME_SIZE, &BufferSerialCount);  // Send the data

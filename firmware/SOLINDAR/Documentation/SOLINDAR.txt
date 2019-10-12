@@ -66,6 +66,19 @@ Module "Bits1"     (component BitsIO)
    - Bits1_NegBit -Negates (inverts) the specified bit of the Input/Output component. It is the same as [PutBit(Bit,!GetBit(Bit)
                 )]. (Method is available only if the Direction = _[output]_ or _[input/output]_).
 
+Module "AD1"       (component ADC)
+   - AD1_Measure -This method performs one measurement on all channels that are set in the component inspector. (Note: If the 
+                <number of conversions> is more than one the conversion of A/D channels is performed specified number of times.)
+   - AD1_GetValue16 -This method returns the last measured values of all channels. Compared with <GetValue> method this method 
+                returns more accurate result if the <number of conversions> is greater than 1 and <AD resolution> is less than 
+                16 bits. In addition, the user code dependency on <AD resolution> is eliminated.
+
+Module "Cap1"      (component Capture)
+   - Cap1_Reset -This method resets the counter register (see implementation note in <General Info>).
+   - Cap1_GetCaptureValue -This method gets the last value captured by enabled timer (see implementation note in <General Info>)
+                . The method does not return valid value after initialization or after <Reset> until new capture event (even if 
+                the returned Error code is ERR_OK).
+
 Module "Cpu"       (component MC9S08QE128_80)
    - Cpu_EnableInt -Enables maskable interrupts
    - Cpu_DisableInt -Disables maskable interrupts

@@ -11,14 +11,14 @@
 char MotorState;
 
 char Sequence[8] ={
-    0b1010,
-    0b1000,
-    0b1001,
-    0b0001,
     0b0101,
-    0b0100,
-    0b0110,
+    0b0001,
+    0b1001,
+    0b1000,
+    0b1010,
     0b0010,
+    0b0110,
+    0b0100,
 };
 
 struct StepperMotor Motor;
@@ -28,6 +28,7 @@ void InitMotor(){
     SetCWLimit(&Motor, CW_LIMIT);
     SetCCWLimit(&Motor, CCW_LIMIT);
     Motor.Port_Func = &Bits1_PutVal;
+    (*Motor.Port_Func)(Sequence[Motor.StateSequence]);
 }
 
 void SetOrientation(struct StepperMotor *Motor, char Orientation) {

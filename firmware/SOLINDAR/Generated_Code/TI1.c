@@ -6,7 +6,7 @@
 **     Component   : TimerInt
 **     Version     : Component 02.161, Driver 01.23, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-10-04, 20:37, # CodeGen: 19
+**     Date/Time   : 2019-10-11, 21:00, # CodeGen: 41
 **     Abstract    :
 **         This component "TimerInt" implements a periodic interrupt.
 **         When the component and its events are enabled, the "OnInterrupt"
@@ -21,7 +21,7 @@
 **
 **         High speed mode
 **             Prescaler               : divide-by-1
-**             Clock                   : 4096 Hz
+**             Clock                   : 2048 Hz
 **           Initial period/frequency
 **             Xtal ticks              : 784
 **             microseconds            : 23926
@@ -30,11 +30,11 @@
 **             Hz                      : 42
 **
 **         Runtime setting             : period/frequency interval (continual setting)
-**             ticks                   : 160 to 1640 ticks
-**             microseconds            : 4883 to 50048 microseconds
-**             milliseconds            : 5 to 50 milliseconds
-**             seconds (real)          : 0.0048828125 to 0.050048828125 seconds
-**             Hz                      : 20 to 204 Hz
+**             ticks                   : 320 to 3280 ticks
+**             microseconds            : 9766 to 100097 microseconds
+**             milliseconds            : 10 to 100 milliseconds
+**             seconds (real)          : 0.009765625 to 0.10009765625 seconds
+**             Hz                      : 10 to 102 Hz
 **
 **         Initialization:
 **              Timer                  : Enabled
@@ -145,7 +145,7 @@ static word CmpHighVal;                /* Compare register value for high speed 
 **     Parameters  :
 **         NAME            - DESCRIPTION
 **         Ticks           - Period to set [in Xtal ticks]
-**                      (160 to 1640 ticks)
+**                      (320 to 3280 ticks)
 **     Returns     :
 **         ---             - Error code, possible codes:
 **                           ERR_OK - OK
@@ -160,10 +160,10 @@ byte TI1_SetPeriodTicks16(word Ticks)
   dlong rtval;                         /* Result of two 32-bit numbers multiplication */
   word rtword;                         /* Result of 64-bit number division */
 
-  if ((Ticks > 0x0668U) || (Ticks < 0xA0U)) { /* Is the given value out of range? */
+  if ((Ticks > 0x0CD0U) || (Ticks < 0x0140U)) { /* Is the given value out of range? */
     return ERR_RANGE;                  /* If yes then error */
   }
-  PE_Timer_LngMul((dword)Ticks, 0x20000000LU, &rtval); /* Multiply given value and High speed CPU mode coefficient */
+  PE_Timer_LngMul((dword)Ticks, 0x10000000LU, &rtval); /* Multiply given value and High speed CPU mode coefficient */
   if (PE_Timer_LngHi4(rtval[0], rtval[1], &rtword)) { /* Is the result greater or equal than 65536 ? */
     rtword = 0xFFFFU;                  /* If yes then use maximal possible value */
   }
@@ -186,7 +186,7 @@ byte TI1_SetPeriodTicks16(word Ticks)
 **     Parameters  :
 **         NAME            - DESCRIPTION
 **         Ticks           - Period to set [in Xtal ticks]
-**                      (160 to 1640 ticks)
+**                      (320 to 3280 ticks)
 **     Returns     :
 **         ---             - Error code, possible codes:
 **                           ERR_OK - OK
@@ -201,10 +201,10 @@ byte TI1_SetPeriodTicks32(dword Ticks)
   dlong rtval;                         /* Result of two 32-bit numbers multiplication */
   word rtword;                         /* Result of 64-bit number division */
 
-  if ((Ticks > 0x0668UL) || (Ticks < 0xA0UL)) { /* Is the given value out of range? */
+  if ((Ticks > 0x0CD0UL) || (Ticks < 0x0140UL)) { /* Is the given value out of range? */
     return ERR_RANGE;                  /* Range error */
   }
-  PE_Timer_LngMul(Ticks, 0x20000000LU, &rtval); /* Multiply given value and high speed CPU mode coefficient */
+  PE_Timer_LngMul(Ticks, 0x10000000LU, &rtval); /* Multiply given value and high speed CPU mode coefficient */
   if (PE_Timer_LngHi4(rtval[0], rtval[1], &rtword)){ /* Is the result greater or equal than 65536 ? */
     rtword = 0xFFFFU;                  /* If yes then use maximal possible value */
   }
@@ -226,7 +226,7 @@ byte TI1_SetPeriodTicks32(dword Ticks)
 **     Parameters  :
 **         NAME            - DESCRIPTION
 **         Time            - Period to set [in microseconds]
-**                      (4883 to 50048 microseconds)
+**                      (9766 to 65535 microseconds)
 **     Returns     :
 **         ---             - Error code, possible codes:
 **                           ERR_OK - OK
@@ -241,11 +241,11 @@ byte TI1_SetPeriodUS(word Time)
   dlong rtval;                         /* Result of two 32-bit numbers multiplication */
   word rtword;                         /* Result of 64-bit number division */
 
-  if ((Time > 0xC380U) || (Time < 0x1313U)) { /* Is the given value out of range? */
+  if (Time < 0x2626U) {                /* Is the given value out of range? */
     return ERR_RANGE;                  /* If yes then error */
   }
-  PE_Timer_LngMul((dword)Time, 0x010C6F7ALU, &rtval); /* Multiply given value and high speed CPU mode coefficient */
-  if (PE_Timer_LngHi4(rtval[0], rtval[1], &rtword)) { /* Is the result greater or equal than 65536 ? */
+  PE_Timer_LngMul((dword)Time, 0x8637BD06LU, &rtval); /* Multiply given value and high speed CPU mode coefficient */
+  if (PE_Timer_LngHi5(rtval[0], rtval[1], &rtword)) { /* Is the result greater or equal than 65536 ? */
     rtword = 0xFFFFU;                  /* If yes then use maximal possible value */
   }
   CmpHighVal = (word)(rtword - 1U);    /* Store result (compare register value for high speed CPU mode) to the variable CmpHighVal */
@@ -266,7 +266,7 @@ byte TI1_SetPeriodUS(word Time)
 **     Parameters  :
 **         NAME            - DESCRIPTION
 **         Time            - Period to set [in miliseconds]
-**                      (5 to 50 milliseconds)
+**                      (10 to 100 milliseconds)
 **     Returns     :
 **         ---             - Error code, possible codes:
 **                           ERR_OK - OK
@@ -281,10 +281,10 @@ byte TI1_SetPeriodMS(word Time)
   dlong rtval;                         /* Result of two 32-bit numbers multiplication */
   word rtword;                         /* Result of 64-bit number division */
 
-  if ((Time > 0x32U) || (Time < 0x05U)) { /* Is the given value out of range? */
+  if ((Time > 0x64U) || (Time < 0x0AU)) { /* Is the given value out of range? */
     return ERR_RANGE;                  /* If yes then error */
   }
-  PE_Timer_LngMul((dword)Time, 0x04189375LU, &rtval); /* Multiply given value and high speed CPU mode coefficient */
+  PE_Timer_LngMul((dword)Time, 0x020C49BALU, &rtval); /* Multiply given value and high speed CPU mode coefficient */
   if (PE_Timer_LngHi3(rtval[0], rtval[1], &rtword)) { /* Is the result greater or equal than 65536 ? */
     rtword = 0xFFFFU;                  /* If yes then use maximal possible value */
   }
@@ -306,14 +306,14 @@ byte TI1_SetPeriodMS(word Time)
 */
 void TI1_Init(void)
 {
-  CmpHighVal = 0x61U;                  /* Remember appropriate value of compare register for high speed CPU mode */
+  CmpHighVal = 0x30U;                  /* Remember appropriate value of compare register for high speed CPU mode */
   /* RTCSC: RTIF=0,RTCLKS=0,RTIE=0,RTCPS=0 */
   setReg8(RTCSC, 0x00U);               /* Stop HW */ 
-  TI1_SetCV(0x61U);                    /* Initialize appropriate value to the compare/modulo/reload register */
+  TI1_SetCV(0x30U);                    /* Initialize appropriate value to the compare/modulo/reload register */
   TI1_SetCV((byte)CmpHighVal);         /* Store appropriate value to the compare/modulo/reload register according to High speed CPU mode */
   RTCMOD = RTCMOD;                     /* Reset HW counter */
-  /* RTCSC: RTIF=1,RTCLKS=2,RTIE=1,RTCPS=1 */
-  setReg8(RTCSC, 0xD1U);               /* Run RTC (select clock source, set frequency and enable interrupt) */ 
+  /* RTCSC: RTIF=1,RTCLKS=2,RTIE=1,RTCPS=0x0C */
+  setReg8(RTCSC, 0xDCU);               /* Run RTC (select clock source, set frequency and enable interrupt) */ 
 }
 
 
