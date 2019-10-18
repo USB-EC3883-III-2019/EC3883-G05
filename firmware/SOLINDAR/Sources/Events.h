@@ -40,6 +40,8 @@
 #include "Bits1.h"
 #include "AD1.h"
 #include "Cap1.h"
+#include "Bit1.h"
+#include "FC1.h"
 
 
 void AS1_OnError(void);
@@ -166,6 +168,35 @@ void Cap1_OnOverflow(void);
 **     Returns     : Nothing
 ** ===================================================================
 */
+
+/*!
+**     @brief
+**         This event is called when a compare matches the counter
+**         value (if compare or reload is selected as a interrupt
+**         source) or a counter overflows (for free-running devices).
+**         It is valid only when the component is enabled - <"Enable">
+**         and the events are enabled - <"EnableEvent">. The event is
+**         available only if <Interrupt service/event> is enabled.
+*/
+/* ===================================================================*/
+
+void FC1_OnInterrupt(void);
+/*
+** ===================================================================
+**     Event       :  FC1_OnInterrupt (module Events)
+**
+**     Component   :  FC1 [FreeCntr]
+*/
+/*!
+**     @brief
+**         This event is called when a compare matches the counter
+**         value (if compare or reload is selected as a interrupt
+**         source) or a counter overflows (for free-running devices).
+**         It is valid only when the component is enabled - <"Enable">
+**         and the events are enabled - <"EnableEvent">. The event is
+**         available only if <Interrupt service/event> is enabled.
+*/
+/* ===================================================================*/
 
 /* END Events */
 #endif /* __Events_H*/

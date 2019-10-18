@@ -146,6 +146,16 @@ void TI1_OnInterrupt(void)
 void Cap1_OnCapture(void)
 {
   /* Write your code here ... */
+  if(Cap1_GetPinValue()){
+    Bit1_ClrVal();
+    Cap1_Reset();
+  }
+  else{
+    Cap1_GetCaptureValue(&SONAR_DATA);
+    FC1_Disable();
+    FC1_Reset();
+    SONAR_STATE = SONAR_DONE;
+  }
 }
 
 /*
@@ -165,31 +175,35 @@ void Cap1_OnCapture(void)
 void AD1_OnEnd(void)
 {
   /* Write your code here ... */
-  // AD1_GetValue16(&LIDAR_DATA);
+  AD1_GetValue16(&LIDAR_DATA);
   LIDAR_STATE = LIDAR_DONE;
 }
 
 
 /*
 ** ===================================================================
-**     Event       :  Cap1_OnOverflow (module Events)
+**     Event       :  FC1_OnInterrupt (module Events)
 **
-**     Component   :  Cap1 [Capture]
-**     Description :
-**         This event is called if counter overflows (only when the
-**         component is enabled - <Enable> and the events are enabled -
-**         <EnableEvent>.This event is available only if a <interrupt
-**         service/event> is enabled.
-**     Parameters  : None
-**     Returns     : Nothing
-** ===================================================================
+**     Component   :  FC1 [FreeCntr]
 */
-void Cap1_OnOverflow(void)
+/*!
+**     @brief
+**         This event is called when a compare matches the counter
+**         value (if compare or reload is selected as a interrupt
+**         source) or a counter overflows (for free-running devices).
+**         It is valid only when the component is enabled - <"Enable">
+**         and the events are enabled - <"EnableEvent">. The event is
+**         available only if <Interrupt service/event> is enabled.
+*/
+/* ===================================================================*/
+void FC1_OnInterrupt(void)
 {
   /* Write your code here ... */
+  FC1_Disable();
+  FC1_Reset();
+  SONAR_DATA = 511;
   SONAR_STATE = SONAR_DONE;
 }
-
 
 /* END Events */
 

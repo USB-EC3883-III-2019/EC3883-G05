@@ -22,6 +22,8 @@
 #define MOTOR_BUSY  0
 #define MOTOR_READY 1
 
+#define MOTOR_STEP_COUNT Motor.StepCount
+
 extern char MotorState;
 
 struct StepperMotor {

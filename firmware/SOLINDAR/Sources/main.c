@@ -19,11 +19,11 @@
 ** @brief
 **         Main module.
 **         This module contains user's application code.
-*/         
+*/
 /*!
 **  @addtogroup main_module main module documentation
 **  @{
-*/         
+*/
 /* MODULE main */
 
 
@@ -35,6 +35,8 @@
 #include "Bits1.h"
 #include "AD1.h"
 #include "Cap1.h"
+#include "Bit1.h"
+#include "FC1.h"
 /* Include shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -57,13 +59,8 @@ void main(void)
   /* Write your code here */
   /* For example: for(;;) { } */
 
-  POSITION_DATA = 63;
-  LIDAR_DATA = 4006;
-  SONAR_DATA = 433;
-
   InitMotor();
   InitSensor();
-
 
   for(;;){
     if(MotorState == MOTOR_READY){
@@ -78,6 +75,7 @@ void main(void)
       }
 
       MeasureSensors();
+      POSITION_DATA = MOTOR_STEP_COUNT;
 
       while(SENSORS_STATE != SENSORS_DONE);                   // Wait for the data is ready
 
