@@ -153,22 +153,6 @@ void AD1_OnEnd(void);
 ** ===================================================================
 */
 
-void Cap1_OnOverflow(void);
-/*
-** ===================================================================
-**     Event       :  Cap1_OnOverflow (module Events)
-**
-**     Component   :  Cap1 [Capture]
-**     Description :
-**         This event is called if counter overflows (only when the
-**         component is enabled - <Enable> and the events are enabled -
-**         <EnableEvent>.This event is available only if a <interrupt
-**         service/event> is enabled.
-**     Parameters  : None
-**     Returns     : Nothing
-** ===================================================================
-*/
-
 /*!
 **     @brief
 **         This event is called when a compare matches the counter
@@ -197,6 +181,21 @@ void FC1_OnInterrupt(void);
 **         available only if <Interrupt service/event> is enabled.
 */
 /* ===================================================================*/
+
+void AS1_OnFullRxBuf(void);
+/*
+** ===================================================================
+**     Event       :  AS1_OnFullRxBuf (module Events)
+**
+**     Component   :  AS1 [AsynchroSerial]
+**     Description :
+**         This event is called when the input buffer is full;
+**         i.e. after reception of the last character 
+**         that was successfully placed into input buffer.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
 
 /* END Events */
 #endif /* __Events_H*/

@@ -37,7 +37,7 @@ struct StepperMotor {
 };
 extern struct StepperMotor Motor;
 
-extern void InitMotor();
+extern void InitMotor(void);
 extern void SetOrientation(struct StepperMotor *, char);
 extern char StepMotor(struct StepperMotor *);
 extern void SetCWLimit(struct StepperMotor *, signed char);

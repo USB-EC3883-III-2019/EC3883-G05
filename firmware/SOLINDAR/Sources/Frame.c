@@ -10,7 +10,6 @@
 
 
 volatile char is_Data_Ready;
-volatile char *BufferSerialCount;
 
 struct FRAME Frame;
 struct DATA Data;

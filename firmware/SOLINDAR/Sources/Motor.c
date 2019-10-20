@@ -23,7 +23,7 @@ char Sequence[8] ={
 
 struct StepperMotor Motor;
 
-void InitMotor(){
+void InitMotor(void){
     SetOrientation(&Motor, CW_ROTATION);
     SetCWLimit(&Motor, CW_LIMIT);
     SetCCWLimit(&Motor, CCW_LIMIT);

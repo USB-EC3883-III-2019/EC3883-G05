@@ -18,7 +18,6 @@
 #define SONAR_DATA    Data.Sonar.fulldata
 
 extern volatile byte is_Data_Ready;
-extern volatile byte* BufferSerialCount;
 
 // Struct for Data
 struct DATA {

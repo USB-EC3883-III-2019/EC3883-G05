@@ -47,6 +47,7 @@
 #include "Frame.h"
 #include "Motor.h"
 #include "Sensor.h"
+#include "Bluetooth.h"
 
 void main(void)
 {
@@ -61,6 +62,7 @@ void main(void)
 
   InitMotor();
   InitSensor();
+  InitBluetooth();
 
   for(;;){
     if(MotorState == MOTOR_READY){
@@ -77,10 +79,10 @@ void main(void)
       MeasureSensors();
       POSITION_DATA = MOTOR_STEP_COUNT;
 
-      while(SENSORS_STATE != SENSORS_DONE);                   // Wait for the data is ready
+      while(SENSORS_STATE != SENSORS_DONE);       // Wait for the data is ready
 
-      Pack(&Frame, Data);                                     // Pack the data
-      AS1_SendBlock(&Frame, FRAME_SIZE, &BufferSerialCount);  // Send the data
+      Pack(&Frame, Data);                         // Pack the data
+      AS1_SendBlock(&Frame, FRAME_SIZE, NULL);    // Send the data
 
       MotorState = MOTOR_BUSY;
     }
