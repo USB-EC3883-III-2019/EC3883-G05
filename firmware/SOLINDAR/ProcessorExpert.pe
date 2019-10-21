@@ -3,8 +3,8 @@
   <Header>
     <Name>SOLINDAR</Name>
     <SavedBy>Anderson</SavedBy>
-    <ModificationStamp>68</ModificationStamp>
-    <Date>2019-10-20</Date>
+    <ModificationStamp>70</ModificationStamp>
+    <Date>2019-10-21</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.2.RT6_b1446-0504</PEversion>
   </Header>
@@ -29,7 +29,7 @@
     <UseExistingModules>true</UseExistingModules>
     <RenamePeripheries>false</RenamePeripheries>
     <Autodependency>true</Autodependency>
-    <ProjectCompNumb>76</ProjectCompNumb>
+    <ProjectCompNumb>82</ProjectCompNumb>
     <DelUnusedPreviouslyGenFiles>true</DelUnusedPreviouslyGenFiles>
     <GeneratedCodeFrozen>false</GeneratedCodeFrozen>
     <AssignInitComponentNameToPrph>true</AssignInitComponentNameToPrph>
@@ -41,6 +41,27 @@
     <ProjectStaticFilesGenerationMode>LINKED</ProjectStaticFilesGenerationMode>
     <SdkSourceFilesDirectory />
   </Options>
+  <UserFolder>
+    <UserFolderName />
+    <NodeName>Motor</NodeName>
+    <CompNumb>79</CompNumb>
+    <FolderType>Beans</FolderType>
+    <ExpandedAll>true</ExpandedAll>
+  </UserFolder>
+  <UserFolder>
+    <UserFolderName />
+    <NodeName>Sonar</NodeName>
+    <CompNumb>80</CompNumb>
+    <FolderType>Beans</FolderType>
+    <ExpandedAll>true</ExpandedAll>
+  </UserFolder>
+  <UserFolder>
+    <UserFolderName />
+    <NodeName>Lidar</NodeName>
+    <CompNumb>81</CompNumb>
+    <FolderType>Beans</FolderType>
+    <ExpandedAll>true</ExpandedAll>
+  </UserFolder>
   <CPU>
     <BeanType>MC9S08QE128_80</BeanType>
     <Name>Cpu</Name>
@@ -10297,7 +10318,7 @@
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>TMRCNTR</IconName>
-    <UserFolderName />
+    <UserFolderName>Motor</UserFolderName>
     <Comment lines_count="0" />
     <Template />
     <BeanVersion>02.161</BeanVersion>
@@ -10769,7 +10790,7 @@
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>BITSIO</IconName>
-    <UserFolderName />
+    <UserFolderName>Motor</UserFolderName>
     <Comment lines_count="0" />
     <Template />
     <BeanVersion>02.108</BeanVersion>
@@ -11202,10 +11223,10 @@
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>AD</IconName>
-    <UserFolderName />
+    <UserFolderName>Lidar</UserFolderName>
     <Comment lines_count="0" />
     <Template />
-    <BeanVersion>01.697</BeanVersion>
+    <BeanVersion>01.699</BeanVersion>
     <LightErrorsIgnored>false</LightErrorsIgnored>
     <Properties>
       <ItemState>
@@ -13377,7 +13398,7 @@
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>Capture</IconName>
-    <UserFolderName />
+    <UserFolderName>Sonar</UserFolderName>
     <Comment lines_count="0" />
     <Template />
     <BeanVersion>02.223</BeanVersion>
@@ -13633,7 +13654,7 @@
         <ItemSymbol>Tmg</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>4 sec</Value>
+        <Value>8 sec</Value>
         <RuntimeSetting>0</RuntimeSetting>
         <ReqDevPrescHigh>-1</ReqDevPrescHigh>
         <ReqDevPrescLow>-1</ReqDevPrescLow>
@@ -13659,7 +13680,7 @@
         <ReqSrcClkPrescSpeedMode5>-1</ReqSrcClkPrescSpeedMode5>
         <ReqSrcClkPrescSpeedMode6>-1</ReqSrcClkPrescSpeedMode6>
         <ReqSrcClkPrescSpeedMode7>-1</ReqSrcClkPrescSpeedMode7>
-        <InitValue>4 sec</InitValue>
+        <InitValue>8 sec</InitValue>
         <Precision>5.0</Precision>
         <PrecInProc>false</PrecInProc>
         <LowLimit />
@@ -14111,7 +14132,7 @@
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>BITIO</IconName>
-    <UserFolderName />
+    <UserFolderName>Sonar</UserFolderName>
     <Comment lines_count="0" />
     <Template />
     <BeanVersion>02.086</BeanVersion>
@@ -14127,7 +14148,7 @@
         <ItemSymbol>_Pin</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>PTA6_TPM1CH2_ADP8</Value>
+        <Value>PTD4_KBI2P4</Value>
         <SharedPrphMode>false</SharedPrphMode>
       </ItemState>
       <ItemState>
@@ -14386,7 +14407,7 @@
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>TMRCNTR</IconName>
-    <UserFolderName />
+    <UserFolderName>Sonar</UserFolderName>
     <Comment lines_count="0" />
     <Template />
     <BeanVersion>01.118</BeanVersion>

@@ -1218,7 +1218,7 @@ autoselected pull
         <Capture_priority v="medium priority" />
         <boolgroup name="Overflow support" v="Disabled" />
       </boolgroup>
-      <Maximum_time_of_event v="4 sec" />
+      <Maximum_time_of_event v="8 sec" />
       <group name="Initialization">
         <Enabled_in_init__code v="yes" />
         <Events_enabled_in_init_ v="yes" />
@@ -1254,7 +1254,7 @@ autoselected pull
     <Enabled v="Y" />
     <Properties>
       <Component_name v="Bit1" />
-      <Pin_for_I_O v="PTA6_TPM1CH2_ADP8" />
+      <Pin_for_I_O v="PTD4_KBI2P4" />
       <Pull_resistor sel_value="no pull resistor">
         
 autoselected pull
@@ -1262,8 +1262,8 @@ autoselected pull
         <EmptySection_DummyValue />
       </Pull_resistor>
       <Open_drain v="push-pull" />
-      <Slew_rate_control_for_PTA6 v="no" />
-      <Drive_strength_for_PTA6 v="High" />
+      <Slew_rate_control_for_PTD4 v="no" />
+      <Drive_strength_for_PTD4 v="High" />
       <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />

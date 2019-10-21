@@ -63,8 +63,8 @@ void main(void)
   InitMotor();
   InitSensor();
   InitBluetooth();
-
-  for(;;){
+  
+    for(;;){
     if(MotorState == MOTOR_READY){
       // If the motor rotation limit is reached, it changes direction of rotation
       if(StepMotor(&Motor) == STEP_LIMIT){

@@ -147,7 +147,6 @@ void Cap1_OnCapture(void)
 {
   /* Write your code here ... */
   if(Cap1_GetPinValue()){
-    Bit1_ClrVal();
     Cap1_Reset();
   }
   else{

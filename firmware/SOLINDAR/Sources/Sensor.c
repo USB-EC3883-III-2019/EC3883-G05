@@ -27,7 +27,7 @@ void InitSensor(void){
 void MeasureSensors(void){
     // Sonar Sensor
     Bit1_SetVal();          // Set trigger output
-
+    
     // LIDAR Sensor
     AD1_Measure(TRUE);
     
