@@ -12,10 +12,10 @@ Position = PositionScale*PositionRAW;
 LidarPoly = [7.67526029129288 -108.134109245746 644.115225669854 -2113.71833279663 4175.24292278666 -5097.1909611203 3802.7451305835 -1649.81901283364 366.038219660162];
 LidarScale = 3/4096;
 LidarEval = polyval(LidarPoly, LidarScale*LidarRAW);
-Lidar = LidarEval;
+Lidar = LidarEval*100;
 
 % Sonar conversion
-SonarScale = 61.03515625E-02/58.30;
+SonarScale = 122.0703125/58.30;
 Sonar = SonarScale*SonarRAW;
 end
 
