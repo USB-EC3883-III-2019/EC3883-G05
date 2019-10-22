@@ -12,6 +12,7 @@ byte2 = syncData(3:4:end);
 byte3 = syncData(4:4:end);
 
 Mask_position(1:blocksize,1) = uint8(63);
+Mask_Position2(1:blocksize,1) = uint8(192);
 Mask_sonar_l(1:blocksize,1)  = uint8(127);
 Mask_sonar_h(1:blocksize,1)  = uint8(96);
 Mask_lidar_l(1:blocksize,1)  = uint8(31);
@@ -21,7 +22,11 @@ sonar_l     = single(bitand(byte1, Mask_sonar_l));
 sonar_h     = single(bitand(byte2, Mask_sonar_h));
 lidar_l     = single(bitand(byte2, Mask_lidar_l));
 lidar_h     = single(bitand(byte3, Mask_lidar_h));
-PositionRAW = single(bitand(byte0, Mask_position));
+PositionRAW = bitand(byte0, Mask_position);
+if PositionRAW >= 32
+   PositionRAW = bitor(PositionRAW, Mask_Position2);
+   PositionRAW = -1.*single(bitcmp(PositionRAW) + 1);
+end
 SonarRAW = sonar_h/32+ sonar_l*4;
 LidarRAW = lidar_h + lidar_l*128;
 end
