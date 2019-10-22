@@ -4,7 +4,7 @@ function [Position, Lidar, Sonar] = ConvertData(PositionRAW, LidarRAW, SonarRAW)
 %   the true values
 
 % Position conversion
-TotalSteps = 48;
+TotalSteps = 96;
 PositionScale = (2*pi()/TotalSteps);
 Position = round(PositionScale*PositionRAW, 3);
 
