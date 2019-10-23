@@ -2,7 +2,7 @@ function [PositionRAW, LidarRAW, SonarRAW] = unpack(data)
 databyte = int8(data);
 start = find(databyte > 0, 1);
 
-syncData = databyte(start:end-mod((512-start),4)-1);
+syncData = databyte(start:end-mod((8-start),4)-1);
 syncData = typecast(syncData, 'uint8');
 blocksize = length(syncData)/4;
 
@@ -27,6 +27,8 @@ if PositionRAW >= 32
    PositionRAW = bitor(PositionRAW, Mask_Position2);
    PositionRAW = -1.*single(bitcmp(PositionRAW) + 1);
 end
+PositionRAW = single(PositionRAW);
+    
 SonarRAW = sonar_h/32+ sonar_l*4;
 LidarRAW = lidar_h + lidar_l*128;
 end
