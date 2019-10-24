@@ -1,8 +1,12 @@
-/*
- * Frame.h
+/**
+ * @file Frame.c
+ * @author Anderson Contreras
+ * @brief API for handle the data frame
+ * @version 0.1
+ * @date 2019-10-02
  *
- *  Created on: Oct 2, 2019
- *      Author: Anderson
+ * @copyright Copyright (c) 2019
+ *
  */
 
 #ifndef FRAME_H_
@@ -26,14 +30,14 @@ struct DATA {
         word fulldata;
         struct LIDARBYTE {
             byte high : 7;
-            byte low  : 5;
+            byte low : 5;
         } byte;
     } Lidar;
     union SONAR {
         word fulldata;
         struct SONARBYTE {
             byte high : 2;
-            byte low  : 7;
+            byte low : 7;
         } byte;
     } Sonar;
 };
@@ -53,7 +57,7 @@ struct FRAME {
 };
 extern struct FRAME Frame;
 
-// Function for packing the data
+// Function for packing the data into the frame
 void Pack(struct FRAME* frame, struct DATA data);
 
 #endif /* FRAME_H_ */

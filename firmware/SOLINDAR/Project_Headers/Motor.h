@@ -1,8 +1,12 @@
-/*
- * Motor.h
+/**
+ * @file Motor.c
+ * @author Anderson Contreras
+ * @brief API for handle the stepper motor
+ * @version 0.1
+ * @date 2019-09-30
  *
- *  Created on: Sep 30, 2019
- *      Author: Anderson
+ * @copyright Copyright (c) 2019
+ *
  */
 
 #ifndef MOTOR_H_
@@ -16,8 +20,8 @@
 #define CW_LIMIT   10
 #define CCW_LIMIT -10
 
-#define STEP_OK    0
-#define STEP_LIMIT 1
+#define STEP_OK     0
+#define STEP_LIMIT  1
 
 #define MOTOR_BUSY  0
 #define MOTOR_READY 1
@@ -27,8 +31,8 @@
 extern char MotorState;
 
 struct StepperMotor {
-    char Rotation  : 1;
-    char           : 7;
+    char Rotation : 1;
+    char          : 7;
     signed char StepCount;
     signed char StateSequence;
     signed char CW_Limit;
@@ -38,9 +42,9 @@ struct StepperMotor {
 extern struct StepperMotor Motor;
 
 extern void InitMotor(void);
-extern void SetOrientation(struct StepperMotor *, char);
-extern char StepMotor(struct StepperMotor *);
-extern void SetCWLimit(struct StepperMotor *, signed char);
-extern void SetCCWLimit(struct StepperMotor *, signed char);
+extern void SetOrientation(struct StepperMotor*, char);
+extern char StepMotor(struct StepperMotor*);
+extern void SetCWLimit(struct StepperMotor*, signed char);
+extern void SetCCWLimit(struct StepperMotor*, signed char);
 
 #endif /* MOTOR_H_ */

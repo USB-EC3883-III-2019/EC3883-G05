@@ -1,8 +1,12 @@
-/*
- * Sensor.h
+/**
+ * @file Sensor.c
+ * @author Anderson Contreras
+ * @brief API for handle the lidar and sonar sensors
+ * @version 0.1
+ * @date 2019-10-05
  *
- *  Created on: Oct 5, 2019
- *      Author: Anderson
+ * @copyright Copyright (c) 2019
+ *
  */
 
 #ifndef SENSOR_H_
@@ -11,7 +15,6 @@
 #include "PE_Types.h"
 
 #pragma MESSAGE DISABLE C1106 /* WARNING C1106: Non-standard bitfield type */
-
 
 #define SENSORS_BUSY 1
 #define SENSORS_DONE 0
@@ -25,7 +28,6 @@
 #define SENSORS_STATE SensorState.Sensor.GlobalState
 #define LIDAR_STATE   SensorState.Sensor.Sensor.LidarState
 #define SONAR_STATE   SensorState.Sensor.Sensor.SonarState
-
 
 struct SENSORSTATE {
     union SENSOR_U {
