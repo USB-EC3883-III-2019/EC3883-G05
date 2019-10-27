@@ -11,7 +11,7 @@
 
 #include "Motor.h"
 
-#include "Bits1.h"
+#include "MotorPort.h"
 
 char MotorState;
 
@@ -29,7 +29,7 @@ void InitMotor(void) {
     SetOrientation(&Motor, CW_ROTATION);
     SetCWLimit(&Motor, CW_LIMIT);
     SetCCWLimit(&Motor, CCW_LIMIT);
-    Motor.Port_Func = &Bits1_PutVal;
+    Motor.Port_Func = &MotorPort_PutVal;
     (*Motor.Port_Func)(Sequence[Motor.StateSequence]);
 }
 

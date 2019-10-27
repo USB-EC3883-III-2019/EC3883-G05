@@ -111,101 +111,6 @@ void  AS1_OnFreeTxBuf(void)
 
 /*
 ** ===================================================================
-**     Event       :  TI1_OnInterrupt (module Events)
-**
-**     Component   :  TI1 [TimerInt]
-**     Description :
-**         When a timer interrupt occurs this event is called (only
-**         when the component is enabled - <Enable> and the events are
-**         enabled - <EnableEvent>). This event is enabled only if a
-**         <interrupt service/event> is enabled.
-**     Parameters  : None
-**     Returns     : Nothing
-** ===================================================================
-*/
-void TI1_OnInterrupt(void)
-{
-  /* Write your code here ... */
-  MotorState = MOTOR_READY;
-}
-
-/*
-** ===================================================================
-**     Event       :  Cap1_OnCapture (module Events)
-**
-**     Component   :  Cap1 [Capture]
-**     Description :
-**         This event is called on capturing of Timer/Counter actual
-**         value (only when the component is enabled - <Enable> and the
-**         events are enabled - <EnableEvent>.This event is available
-**         only if a <interrupt service/event> is enabled.
-**     Parameters  : None
-**     Returns     : Nothing
-** ===================================================================
-*/
-void Cap1_OnCapture(void)
-{
-  /* Write your code here ... */
-  if(Cap1_GetPinValue()){
-    Cap1_Reset();
-  }
-  else{
-    Cap1_GetCaptureValue(&SONAR_DATA);
-    FC1_Disable();
-    FC1_Reset();
-    SONAR_STATE = SONAR_DONE;
-  }
-}
-
-/*
-** ===================================================================
-**     Event       :  AD1_OnEnd (module Events)
-**
-**     Component   :  AD1 [ADC]
-**     Description :
-**         This event is called after the measurement (which consists
-**         of <1 or more conversions>) is/are finished.
-**         The event is available only when the <Interrupt
-**         service/event> property is enabled.
-**     Parameters  : None
-**     Returns     : Nothing
-** ===================================================================
-*/
-void AD1_OnEnd(void)
-{
-  /* Write your code here ... */
-  AD1_GetValue16(&LIDAR_DATA);
-  LIDAR_STATE = LIDAR_DONE;
-}
-
-
-/*
-** ===================================================================
-**     Event       :  FC1_OnInterrupt (module Events)
-**
-**     Component   :  FC1 [FreeCntr]
-*/
-/*!
-**     @brief
-**         This event is called when a compare matches the counter
-**         value (if compare or reload is selected as a interrupt
-**         source) or a counter overflows (for free-running devices).
-**         It is valid only when the component is enabled - <"Enable">
-**         and the events are enabled - <"EnableEvent">. The event is
-**         available only if <Interrupt service/event> is enabled.
-*/
-/* ===================================================================*/
-void FC1_OnInterrupt(void)
-{
-  /* Write your code here ... */
-  FC1_Disable();
-  FC1_Reset();
-  SONAR_DATA = 511;
-  SONAR_STATE = SONAR_DONE;
-}
-
-/*
-** ===================================================================
 **     Event       :  AS1_OnFullRxBuf (module Events)
 **
 **     Component   :  AS1 [AsynchroSerial]
@@ -220,6 +125,101 @@ void FC1_OnInterrupt(void)
 void  AS1_OnFullRxBuf(void)
 {
   /* Write your code here ... */
+}
+
+/*
+** ===================================================================
+**     Event       :  SonarTimer_OnInterrupt (module Events)
+**
+**     Component   :  SonarTimer [FreeCntr]
+*/
+/*!
+**     @brief
+**         This event is called when a compare matches the counter
+**         value (if compare or reload is selected as a interrupt
+**         source) or a counter overflows (for free-running devices).
+**         It is valid only when the component is enabled - <"Enable">
+**         and the events are enabled - <"EnableEvent">. The event is
+**         available only if <Interrupt service/event> is enabled.
+*/
+/* ===================================================================*/
+void SonarTimer_OnInterrupt(void)
+{
+  /* Write your code here ... */
+  SonarTimer_Disable();
+  SonarTimer_Reset();
+  SONAR_DATA = 511;
+  SONAR_STATE = SONAR_DONE;
+}
+
+/*
+** ===================================================================
+**     Event       :  SonarEcho_OnCapture (module Events)
+**
+**     Component   :  SonarEcho [Capture]
+**     Description :
+**         This event is called on capturing of Timer/Counter actual
+**         value (only when the component is enabled - <Enable> and the
+**         events are enabled - <EnableEvent>.This event is available
+**         only if a <interrupt service/event> is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void SonarEcho_OnCapture(void)
+{
+  /* Write your code here ... */
+  if(SonarEcho_GetPinValue()){
+    SonarEcho_Reset();
+  }
+  else{
+    SonarEcho_GetCaptureValue(&SONAR_DATA);
+    SonarTimer_Disable();
+    SonarTimer_Reset();
+    SONAR_STATE = SONAR_DONE;
+  }
+}
+
+/*
+** ===================================================================
+**     Event       :  LidarADC_OnEnd (module Events)
+**
+**     Component   :  LidarADC [ADC]
+**     Description :
+**         This event is called after the measurement (which consists
+**         of <1 or more conversions>) is/are finished.
+**         The event is available only when the <Interrupt
+**         service/event> property is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void LidarADC_OnEnd(void)
+{
+  /* Write your code here ... */
+  LidarADC_GetValue16(&LIDAR_DATA);
+  LIDAR_STATE = LIDAR_DONE;
+}
+
+
+/*
+** ===================================================================
+**     Event       :  MotorTimer_OnInterrupt (module Events)
+**
+**     Component   :  MotorTimer [TimerInt]
+**     Description :
+**         When a timer interrupt occurs this event is called (only
+**         when the component is enabled - <Enable> and the events are
+**         enabled - <EnableEvent>). This event is enabled only if a
+**         <interrupt service/event> is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void MotorTimer_OnInterrupt(void)
+{
+  /* Write your code here ... */
+  MotorState = MOTOR_READY;
 }
 
 /* END Events */

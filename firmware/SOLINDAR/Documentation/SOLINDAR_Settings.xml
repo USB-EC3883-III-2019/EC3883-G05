@@ -1029,10 +1029,10 @@ asm(BGND);
       <event name="OnRxActiveEdge" v="don&amp;apos;t generate code" />
     </Events>
   </Bean>
-  <Bean name="TI1" type="TimerInt">
+  <Bean name="MotorTimer" type="TimerInt">
     <Enabled v="Y" />
     <Properties>
-      <Component_name v="TI1" />
+      <Component_name v="MotorTimer" />
       <Periodic_interrupt_source v="TPM10" />
       <Counter v="TPM1" />
       <boolgroup name="Interrupt service/event" v="Enabled">
@@ -1073,15 +1073,15 @@ asm(BGND);
       <event name="BeforeNewSpeed" v="don&amp;apos;t generate code" />
       <event name="AfterNewSpeed" v="don&amp;apos;t generate code" />
       <event name="OnInterrupt" v="generate code">
-        <Event_procedure_name v="TI1_OnInterrupt" />
+        <Event_procedure_name v="MotorTimer_OnInterrupt" />
         <Priority v="same as interrupt" />
       </event>
     </Events>
   </Bean>
-  <Bean name="Bits1" type="BitsIO">
+  <Bean name="MotorPort" type="BitsIO">
     <Enabled v="Y" />
     <Properties>
-      <Component_name v="Bits1" />
+      <Component_name v="MotorPort" />
       <Port v="PTC" />
       <list name="Pins" v="4">
         <group name="Pin0">
@@ -1137,10 +1137,10 @@ autoselected pull
       <EmptySection_DummyValue />
     </Events>
   </Bean>
-  <Bean name="AD1" type="ADC">
+  <Bean name="LidarADC" type="ADC">
     <Enabled v="Y" />
     <Properties>
-      <Component_name v="AD1" />
+      <Component_name v="LidarADC" />
       <A_D_converter v="ADC" />
       <Sharing v="Disabled" />
       <boolgroup name="Interrupt service/event" v="Enabled">
@@ -1194,15 +1194,15 @@ autoselected pull
       <event name="BeforeNewSpeed" v="don&amp;apos;t generate code" />
       <event name="AfterNewSpeed" v="don&amp;apos;t generate code" />
       <event name="OnEnd" v="generate code">
-        <Event_procedure_name v="AD1_OnEnd" />
+        <Event_procedure_name v="LidarADC_OnEnd" />
         <Priority v="same as interrupt" />
       </event>
     </Events>
   </Bean>
-  <Bean name="Cap1" type="Capture">
+  <Bean name="SonarEcho" type="Capture">
     <Enabled v="Y" />
     <Properties>
-      <Component_name v="Cap1" />
+      <Component_name v="SonarEcho" />
       <Capture_device v="TPM22" />
       <Counter v="TPM2" />
       <Capture_input_pin v="PTA7_TPM2CH2_ADP9" />
@@ -1244,16 +1244,16 @@ autoselected pull
       <event name="BeforeNewSpeed" v="don&amp;apos;t generate code" />
       <event name="AfterNewSpeed" v="don&amp;apos;t generate code" />
       <event name="OnCapture" v="generate code">
-        <Event_procedure_name v="Cap1_OnCapture" />
+        <Event_procedure_name v="SonarEcho_OnCapture" />
         <Priority v="same as interrupt" />
       </event>
       <event name="OnOverflow" v="don&amp;apos;t generate code" />
     </Events>
   </Bean>
-  <Bean name="Bit1" type="BitIO">
+  <Bean name="SonarTrigger" type="BitIO">
     <Enabled v="Y" />
     <Properties>
-      <Component_name v="Bit1" />
+      <Component_name v="SonarTrigger" />
       <Pin_for_I_O v="PTD4_KBI2P4" />
       <Pull_resistor sel_value="no pull resistor">
         
@@ -1287,10 +1287,10 @@ autoselected pull
       <EmptySection_DummyValue />
     </Events>
   </Bean>
-  <Bean name="FC1" type="FreeCntr">
+  <Bean name="SonarTimer" type="FreeCntr">
     <Enabled v="Y" />
     <Properties>
-      <Component_name v="FC1" />
+      <Component_name v="SonarTimer" />
       <Device v="RTCmod" />
       <Counter v="RTC" />
       <boolgroup name="Interrupt service/event" v="Enabled">
@@ -1326,7 +1326,7 @@ autoselected pull
       <event name="BeforeNewSpeed" v="don&amp;apos;t generate code" />
       <event name="AfterNewSpeed" v="don&amp;apos;t generate code" />
       <event name="OnInterrupt" v="generate code">
-        <Event_procedure_name v="FC1_OnInterrupt" />
+        <Event_procedure_name v="SonarTimer_OnInterrupt" />
         <Priority v="same as interrupt" />
       </event>
     </Events>

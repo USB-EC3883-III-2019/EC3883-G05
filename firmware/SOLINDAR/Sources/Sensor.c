@@ -11,10 +11,10 @@
 
 #include "Sensor.h"
 
-#include "AD1.h"
-#include "Bit1.h"
-#include "Cap1.h"
-#include "FC1.h"
+#include "LidarADC.h"
+#include "SonarTrigger.h"
+#include "SonarEcho.h"
+#include "SonarTimer.h"
 
 struct SENSORSTATE SensorState;
 
@@ -24,9 +24,9 @@ struct SENSORSTATE SensorState;
  */
 void InitSensor(void) {
     LIDAR_STATE = LIDAR_BUSY;
-    Cap1_Reset();
-    FC1_Disable();  // Init timer for overflow the Sonar
-    FC1_Reset();
+    SonarEcho_Reset();
+    SonarTimer_Disable();  // Init timer for overflow the Sonar
+    SonarTimer_Reset();
     SONAR_STATE = SONAR_BUSY;
 };
 
@@ -36,13 +36,13 @@ void InitSensor(void) {
  */
 void MeasureSensors(void) {
     // Sonar Sensor
-    Bit1_SetVal();  // Set trigger output
+    SonarTrigger_SetVal();  // Set trigger output
 
     // LIDAR Sensor
-    AD1_Measure(TRUE);
+    LidarADC_Measure(TRUE);
 
     // SONAR Sensor
-    Bit1_ClrVal();  // Clear trigger output
-    FC1_Enable();
+    SonarTrigger_ClrVal();  // Clear trigger output
+    SonarTimer_Enable();
     SONAR_STATE = SONAR_BUSY;
 };

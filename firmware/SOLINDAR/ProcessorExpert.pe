@@ -3,8 +3,8 @@
   <Header>
     <Name>SOLINDAR</Name>
     <SavedBy>Anderson</SavedBy>
-    <ModificationStamp>70</ModificationStamp>
-    <Date>2019-10-21</Date>
+    <ModificationStamp>71</ModificationStamp>
+    <Date>2019-10-27</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.2.RT6_b1446-0504</PEversion>
   </Header>
@@ -10313,7 +10313,7 @@
   </Bean>
   <Bean>
     <BeanType>TimerInt</BeanType>
-    <Name>TI1</Name>
+    <Name>MotorTimer</Name>
     <CompNumb>24</CompNumb>
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
@@ -10328,7 +10328,7 @@
         <ItemSymbol>DeviceName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>TI1</Value>
+        <Value>MotorTimer</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>_Cmp</ItemSymbol>
@@ -10743,7 +10743,7 @@
         <ItemSymbol>BeforeNewSpeedName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>TI1_BeforeNewSpeed</Value>
+        <Value>MotorTimer_BeforeNewSpeed</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>AfterNewSpeed</ItemSymbol>
@@ -10759,7 +10759,7 @@
         <ItemSymbol>AfterNewSpeedName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>TI1_AfterNewSpeed</Value>
+        <Value>MotorTimer_AfterNewSpeed</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>OnInterrupt</ItemSymbol>
@@ -10773,7 +10773,7 @@
         <ItemSymbol>OnInterruptName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>TI1_OnInterrupt</Value>
+        <Value>MotorTimer_OnInterrupt</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>OnInterruptPriority</ItemSymbol>
@@ -10785,7 +10785,7 @@
   </Bean>
   <Bean>
     <BeanType>BitsIO</BeanType>
-    <Name>Bits1</Name>
+    <Name>MotorPort</Name>
     <CompNumb>30</CompNumb>
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
@@ -10800,7 +10800,7 @@
         <ItemSymbol>DeviceName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>Bits1</Value>
+        <Value>MotorPort</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>_Port</ItemSymbol>
@@ -11218,7 +11218,7 @@
   </Bean>
   <Bean>
     <BeanType>ADC</BeanType>
-    <Name>AD1</Name>
+    <Name>LidarADC</Name>
     <CompNumb>36</CompNumb>
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
@@ -11226,14 +11226,14 @@
     <UserFolderName>Lidar</UserFolderName>
     <Comment lines_count="0" />
     <Template />
-    <BeanVersion>01.699</BeanVersion>
+    <BeanVersion>01.697</BeanVersion>
     <LightErrorsIgnored>false</LightErrorsIgnored>
     <Properties>
       <ItemState>
         <ItemSymbol>DeviceName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>AD1</Value>
+        <Value>LidarADC</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>ADdevice</ItemSymbol>
@@ -13149,7 +13149,7 @@
         <ItemSymbol>BeforeNewSpeedName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>AD1_BeforeNewSpeed</Value>
+        <Value>LidarADC_BeforeNewSpeed</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>AfterNewSpeed</ItemSymbol>
@@ -13165,7 +13165,7 @@
         <ItemSymbol>AfterNewSpeedName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>AD1_AfterNewSpeed</Value>
+        <Value>LidarADC_AfterNewSpeed</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>OnEnd</ItemSymbol>
@@ -13181,7 +13181,7 @@
         <ItemSymbol>OnEndName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>AD1_OnEnd</Value>
+        <Value>LidarADC_OnEnd</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>OnEndPriority</ItemSymbol>
@@ -13209,7 +13209,7 @@
         <ItemSymbol>OnTrgOverrunName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>AD1_OnTrgOverrun</Value>
+        <Value>LidarADC_OnTrgOverrun</Value>
         <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
       </ItemState>
       <ItemState>
@@ -13239,7 +13239,7 @@
         <ItemSymbol>OnHighLimitName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>AD1_OnHighLimit</Value>
+        <Value>LidarADC_OnHighLimit</Value>
         <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
       </ItemState>
       <ItemState>
@@ -13264,7 +13264,7 @@
         <ItemSymbol>OnLowLimitName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>AD1_OnLowLimit</Value>
+        <Value>LidarADC_OnLowLimit</Value>
         <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
       </ItemState>
       <ItemState>
@@ -13289,7 +13289,7 @@
         <ItemSymbol>OnZeroCrossingName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>AD1_OnZeroCrossing</Value>
+        <Value>LidarADC_OnZeroCrossing</Value>
         <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
       </ItemState>
       <ItemState>
@@ -13319,7 +13319,7 @@
         <ItemSymbol>OnCalibrationEndName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>AD1_OnCalibrationEnd</Value>
+        <Value>LidarADC_OnCalibrationEnd</Value>
         <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
       </ItemState>
       <ItemState>
@@ -13349,7 +13349,7 @@
         <ItemSymbol>OnErrorName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>AD1_OnError</Value>
+        <Value>LidarADC_OnError</Value>
         <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
       </ItemState>
       <ItemState>
@@ -13379,7 +13379,7 @@
         <ItemSymbol>OnAbortName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>AD1_OnAbort</Value>
+        <Value>LidarADC_OnAbort</Value>
         <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
       </ItemState>
       <ItemState>
@@ -13393,7 +13393,7 @@
   </Bean>
   <Bean>
     <BeanType>Capture</BeanType>
-    <Name>Cap1</Name>
+    <Name>SonarEcho</Name>
     <CompNumb>37</CompNumb>
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
@@ -13408,7 +13408,7 @@
         <ItemSymbol>DeviceName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>Cap1</Value>
+        <Value>SonarEcho</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>Cap</ItemSymbol>
@@ -14026,7 +14026,7 @@
         <ItemSymbol>BeforeNewSpeedName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>Cap1_BeforeNewSpeed</Value>
+        <Value>SonarEcho_BeforeNewSpeed</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>AfterNewSpeed</ItemSymbol>
@@ -14042,7 +14042,7 @@
         <ItemSymbol>AfterNewSpeedName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>Cap1_AfterNewSpeed</Value>
+        <Value>SonarEcho_AfterNewSpeed</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>OnCapture</ItemSymbol>
@@ -14058,7 +14058,7 @@
         <ItemSymbol>OnCaptureName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>Cap1_OnCapture</Value>
+        <Value>SonarEcho_OnCapture</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>OnCapturePriority</ItemSymbol>
@@ -14085,7 +14085,7 @@
         <ItemSymbol>OnOverflowName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>Cap1_OnOverflow</Value>
+        <Value>SonarEcho_OnOverflow</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>OnOverflowPriority</ItemSymbol>
@@ -14113,7 +14113,7 @@
         <ItemSymbol>OnOverrunName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>Cap1_OnOverrun</Value>
+        <Value>SonarEcho_OnOverrun</Value>
         <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
       </ItemState>
       <ItemState>
@@ -14127,7 +14127,7 @@
   </Bean>
   <Bean>
     <BeanType>BitIO</BeanType>
-    <Name>Bit1</Name>
+    <Name>SonarTrigger</Name>
     <CompNumb>45</CompNumb>
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
@@ -14142,7 +14142,7 @@
         <ItemSymbol>DeviceName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>Bit1</Value>
+        <Value>SonarTrigger</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>_Pin</ItemSymbol>
@@ -14402,7 +14402,7 @@
   </Bean>
   <Bean>
     <BeanType>FreeCntr</BeanType>
-    <Name>FC1</Name>
+    <Name>SonarTimer</Name>
     <CompNumb>67</CompNumb>
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
@@ -14417,7 +14417,7 @@
         <ItemSymbol>DeviceName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>FC1</Value>
+        <Value>SonarTimer</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>_Cmp</ItemSymbol>
@@ -14740,7 +14740,7 @@
         <ItemSymbol>BeforeNewSpeedName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>FC1_BeforeNewSpeed</Value>
+        <Value>SonarTimer_BeforeNewSpeed</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>AfterNewSpeed</ItemSymbol>
@@ -14756,7 +14756,7 @@
         <ItemSymbol>AfterNewSpeedName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>FC1_AfterNewSpeed</Value>
+        <Value>SonarTimer_AfterNewSpeed</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>OnInterrupt</ItemSymbol>
@@ -14772,7 +14772,7 @@
         <ItemSymbol>OnInterruptName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>FC1_OnInterrupt</Value>
+        <Value>SonarTimer_OnInterrupt</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>OnInterruptPriority</ItemSymbol>

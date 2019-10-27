@@ -36,13 +36,12 @@
 #include "IO_Map.h"
 #include "PE_Timer.h"
 #include "AS1.h"
-#include "TI1.h"
-#include "Bits1.h"
-#include "AD1.h"
-#include "Cap1.h"
-#include "Bit1.h"
-#include "FC1.h"
-
+#include "LidarADC.h"
+#include "MotorTimer.h"
+#include "MotorPort.h"
+#include "SonarEcho.h"
+#include "SonarTrigger.h"
+#include "SonarTimer.h"
 
 void AS1_OnError(void);
 /*
@@ -192,6 +191,72 @@ void AS1_OnFullRxBuf(void);
 **         This event is called when the input buffer is full;
 **         i.e. after reception of the last character 
 **         that was successfully placed into input buffer.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void SonarTimer_OnInterrupt(void);
+/*
+** ===================================================================
+**     Event       :  SonarTimer_OnInterrupt (module Events)
+**
+**     Component   :  SonarTimer [FreeCntr]
+*/
+/*!
+**     @brief
+**         This event is called when a compare matches the counter
+**         value (if compare or reload is selected as a interrupt
+**         source) or a counter overflows (for free-running devices).
+**         It is valid only when the component is enabled - <"Enable">
+**         and the events are enabled - <"EnableEvent">. The event is
+**         available only if <Interrupt service/event> is enabled.
+*/
+/* ===================================================================*/
+
+void SonarEcho_OnCapture(void);
+/*
+** ===================================================================
+**     Event       :  SonarEcho_OnCapture (module Events)
+**
+**     Component   :  SonarEcho [Capture]
+**     Description :
+**         This event is called on capturing of Timer/Counter actual
+**         value (only when the component is enabled - <Enable> and the
+**         events are enabled - <EnableEvent>.This event is available
+**         only if a <interrupt service/event> is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void LidarADC_OnEnd(void);
+/*
+** ===================================================================
+**     Event       :  LidarADC_OnEnd (module Events)
+**
+**     Component   :  LidarADC [ADC]
+**     Description :
+**         This event is called after the measurement (which consists
+**         of <1 or more conversions>) is/are finished.
+**         The event is available only when the <Interrupt
+**         service/event> property is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void MotorTimer_OnInterrupt(void);
+/*
+** ===================================================================
+**     Event       :  MotorTimer_OnInterrupt (module Events)
+**
+**     Component   :  MotorTimer [TimerInt]
+**     Description :
+**         When a timer interrupt occurs this event is called (only
+**         when the component is enabled - <Enable> and the events are
+**         enabled - <EnableEvent>). This event is enabled only if a
+**         <interrupt service/event> is enabled.
 **     Parameters  : None
 **     Returns     : Nothing
 ** ===================================================================
