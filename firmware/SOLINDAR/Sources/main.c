@@ -79,11 +79,15 @@ void main(void)
 
       MeasureSensors();
       POSITION_DATA = MOTOR_STEP_COUNT;
+      
+      Cpu_SetWaitMode();
 
       while(SENSORS_STATE != SENSORS_DONE);       // Wait for the data is ready
 
       Pack(&Frame, Data);                         // Pack the data
       AS1_SendBlock(&Frame, FRAME_SIZE, NULL);    // Send the data
+      
+      Cpu_SetWaitMode();
 
       MotorState = MOTOR_BUSY;
     }

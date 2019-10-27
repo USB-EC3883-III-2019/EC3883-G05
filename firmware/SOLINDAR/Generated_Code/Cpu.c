@@ -7,7 +7,7 @@
 **     Version     : Component 01.003, Driver 01.40, CPU db: 3.00.067
 **     Datasheet   : MC9S08QE128RM Rev. 2 6/2007
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-10-27, 13:33, # CodeGen: 71
+**     Date/Time   : 2019-10-27, 14:13, # CodeGen: 73
 **     Abstract    :
 **         This component "MC9S08QE128_80" contains initialization 
 **         of the CPU and provides basic methods and events for 
@@ -15,8 +15,9 @@
 **     Settings    :
 **
 **     Contents    :
-**         EnableInt  - void Cpu_EnableInt(void);
-**         DisableInt - void Cpu_DisableInt(void);
+**         EnableInt   - void Cpu_EnableInt(void);
+**         DisableInt  - void Cpu_DisableInt(void);
+**         SetWaitMode - void Cpu_SetWaitMode(void);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -131,6 +132,24 @@ void Cpu_DisableInt(void)
 */
 /*
 void Cpu_EnableInt(void)
+
+**      This method is implemented as macro in the header module. **
+*/
+
+/*
+** ===================================================================
+**     Method      :  Cpu_SetWaitMode (component MC9S08QE128_80)
+**     Description :
+**         Sets the low power mode - Wait mode.
+**         For more information about the wait mode, see the
+**         documentation of this CPU.
+**         Release from the Wait mode: Reset or interrupt
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+/*
+void Cpu_SetWaitMode(void)
 
 **      This method is implemented as macro in the header module. **
 */

@@ -117,5 +117,7 @@ Module "SonarTimer" (component FreeCntr)
 Module "Cpu"       (component MC9S08QE128_80)
    - Cpu_EnableInt -Enables maskable interrupts
    - Cpu_DisableInt -Disables maskable interrupts
+   - Cpu_SetWaitMode -Sets the low power mode - Wait mode.   For more information about the wait mode, see the documentation of 
+                this CPU.   Release from the Wait mode: Reset or interrupt
 
 ===================================================================================

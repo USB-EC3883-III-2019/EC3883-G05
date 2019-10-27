@@ -3,7 +3,7 @@
   <Header>
     <Name>SOLINDAR</Name>
     <SavedBy>Anderson</SavedBy>
-    <ModificationStamp>71</ModificationStamp>
+    <ModificationStamp>72</ModificationStamp>
     <Date>2019-10-27</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.2.RT6_b1446-0504</PEversion>
@@ -489,14 +489,14 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>Auto select</Value>
+        <Value>23</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>ADCAsynchroClock</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>Auto select</Value>
+        <Value>1</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>ADC1CondGrp</ItemSymbol>
@@ -2459,7 +2459,7 @@
       </ItemState>
       <ItemState>
         <ItemSymbol>IntVreset</ItemSymbol>
-        <Value />
+        <Value>Vreset</Value>
         <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
       </ItemState>
       <ItemState>
@@ -3124,10 +3124,10 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>1</Index>
-        <Value>false</Value>
+        <Index>0</Index>
+        <Value>true</Value>
         <LastSelection>true</LastSelection>
-        <LastUserSel>no</LastUserSel>
+        <LastUserSel>yes</LastUserSel>
         <UsrMethodName>SetWaitMode</UsrMethodName>
       </ItemState>
       <ItemState>
@@ -7300,10 +7300,10 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>1</Index>
-        <Value>false</Value>
+        <Index>0</Index>
+        <Value>true</Value>
         <LastSelection>true</LastSelection>
-        <LastUserSel>no</LastUserSel>
+        <LastUserSel>yes</LastUserSel>
         <UsrMethodName>SetWaitMode</UsrMethodName>
       </ItemState>
       <ItemState>

@@ -309,7 +309,7 @@
         <EnableInt v="generate code" />
         <DisableInt v="generate code" />
         <GetResetSource v="don&amp;apos;t generate code" />
-        <SetWaitMode v="don&amp;apos;t generate code" />
+        <SetWaitMode v="generate code" />
         <SetStopMode v="don&amp;apos;t generate code" />
         <GetLowVoltageFlag v="don&amp;apos;t generate code" />
         <ClearLowVoltageFlag v="don&amp;apos;t generate code" />
@@ -766,7 +766,7 @@ asm(BGND);
         <EnableInt v="generate code" />
         <DisableInt v="generate code" />
         <GetResetSource v="don&amp;apos;t generate code" />
-        <SetWaitMode v="don&amp;apos;t generate code" />
+        <SetWaitMode v="generate code" />
         <SetStopMode v="don&amp;apos;t generate code" />
         <GetLowVoltageFlag v="don&amp;apos;t generate code" />
         <ClearLowVoltageFlag v="don&amp;apos;t generate code" />
