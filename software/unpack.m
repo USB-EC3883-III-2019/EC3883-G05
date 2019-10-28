@@ -2,7 +2,7 @@ function [PositionRAW, LidarRAW, SonarRAW] = unpack(data)
 databyte = int8(data);
 start = find(databyte > 0, 1);
 
-syncData = databyte(start:end-mod((8-start),4)-1);
+syncData = databyte(start:end-mod((16-start),4)-1);
 syncData = typecast(syncData, 'uint8');
 blocksize = length(syncData)/4;
 
