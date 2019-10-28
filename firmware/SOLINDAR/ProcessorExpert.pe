@@ -3,8 +3,8 @@
   <Header>
     <Name>SOLINDAR</Name>
     <SavedBy>Anderson</SavedBy>
-    <ModificationStamp>72</ModificationStamp>
-    <Date>2019-10-27</Date>
+    <ModificationStamp>73</ModificationStamp>
+    <Date>2019-10-28</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.2.RT6_b1446-0504</PEversion>
   </Header>
@@ -2459,7 +2459,7 @@
       </ItemState>
       <ItemState>
         <ItemSymbol>IntVreset</ItemSymbol>
-        <Value>Vreset</Value>
+        <Value />
         <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
       </ItemState>
       <ItemState>
@@ -10416,7 +10416,7 @@
         <ItemSymbol>_Tmg</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>24 ms</Value>
+        <Value>50 ms</Value>
         <RuntimeSetting>1</RuntimeSetting>
         <ReqDevPrescHigh>-1</ReqDevPrescHigh>
         <ReqDevPrescLow>-1</ReqDevPrescLow>
@@ -10442,7 +10442,7 @@
         <ReqSrcClkPrescSpeedMode5>-1</ReqSrcClkPrescSpeedMode5>
         <ReqSrcClkPrescSpeedMode6>-1</ReqSrcClkPrescSpeedMode6>
         <ReqSrcClkPrescSpeedMode7>-1</ReqSrcClkPrescSpeedMode7>
-        <InitValue>24 ms</InitValue>
+        <InitValue>50 ms</InitValue>
         <Precision>5.0</Precision>
         <PrecInProc>true</PrecInProc>
         <LowLimit>5 ms</LowLimit>

@@ -17,8 +17,8 @@
 #define CW_ROTATION  0
 #define CCW_ROTATION 1
 
-#define CW_LIMIT   10
-#define CCW_LIMIT -10
+#define CW_LIMIT   30
+#define CCW_LIMIT -30
 
 #define STEP_OK     0
 #define STEP_LIMIT  1
