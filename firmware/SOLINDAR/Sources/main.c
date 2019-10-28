@@ -87,10 +87,9 @@ void main(void)
       Pack(&Frame, Data);                         // Pack the data
       AS1_SendBlock(&Frame, FRAME_SIZE, NULL);    // Send the data
       
-      Cpu_SetWaitMode();
-
       MotorState = MOTOR_BUSY;
     }
+      Cpu_SetWaitMode();
   }
 
   /*** Don't write any code pass this line, or it will be deleted during code generation. ***/
