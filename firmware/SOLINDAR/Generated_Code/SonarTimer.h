@@ -6,7 +6,7 @@
 **     Component   : FreeCntr
 **     Version     : Component 01.118, Driver 01.13, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-10-27, 13:33, # CodeGen: 71
+**     Date/Time   : 2019-10-30, 18:46, # CodeGen: 75
 **     Abstract    :
 **         This device "FreeCntr" implements a free running counter for
 **         time measurement.

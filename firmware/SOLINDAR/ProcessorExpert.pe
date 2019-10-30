@@ -3,8 +3,8 @@
   <Header>
     <Name>SOLINDAR</Name>
     <SavedBy>Anderson</SavedBy>
-    <ModificationStamp>73</ModificationStamp>
-    <Date>2019-10-28</Date>
+    <ModificationStamp>76</ModificationStamp>
+    <Date>2019-10-30</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.2.RT6_b1446-0504</PEversion>
   </Header>
@@ -29,7 +29,7 @@
     <UseExistingModules>true</UseExistingModules>
     <RenamePeripheries>false</RenamePeripheries>
     <Autodependency>true</Autodependency>
-    <ProjectCompNumb>82</ProjectCompNumb>
+    <ProjectCompNumb>85</ProjectCompNumb>
     <DelUnusedPreviouslyGenFiles>true</DelUnusedPreviouslyGenFiles>
     <GeneratedCodeFrozen>false</GeneratedCodeFrozen>
     <AssignInitComponentNameToPrph>true</AssignInitComponentNameToPrph>

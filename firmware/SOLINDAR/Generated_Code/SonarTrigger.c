@@ -6,7 +6,7 @@
 **     Component   : BitIO
 **     Version     : Component 02.086, Driver 03.27, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-10-27, 13:33, # CodeGen: 71
+**     Date/Time   : 2019-10-30, 18:46, # CodeGen: 75
 **     Abstract    :
 **         This component "BitIO" implements an one-bit input/output.
 **         It uses one bit/pin of a port.
