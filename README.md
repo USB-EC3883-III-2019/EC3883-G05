@@ -8,6 +8,9 @@ Repositorio para la materia cursada en el período Septiembre-Diciembre 2019, EC
 ## Proyecto 1 (SOLINDAR)
 Elaboración de un SONAR/LIDAR de dos dimensiones de bajo costo y con fusión sensorial.
 
+## Proyecto 2 (Comunicación entre torres)
+Elaboración de un protocolo de comunicaciones entre diferentes torres compuestas por una estrategia de detección SOLINDAR.
+
 ## Estructura del repositorio
 Para mantener el orden del proyecto, se utilizara la siguiente estructura en el repositorio para asociar cada archivo con la parte desarrollada del mismo.
 
@@ -23,6 +26,6 @@ En esta carpeta "hardware" se colocan los archivos referentes a los diferentes c
 ### [Software](https://github.com/USB-EC3883-III-2019/EC3883-G05/tree/master/software)
 En esta carpeta "software" esta incluido el desarrollo en software para pc en MATLAB para la interfaz gráfica.
 
-Leer [anteproyecto](https://github.com/USB-EC3883-III-2019/EC3883-G05/wiki), para mayor información sobre el diseño de la implementación de hardware como de software con respecto a el proyecto 1.
+Leer [Wiki](https://github.com/USB-EC3883-III-2019/EC3883-G05/wiki), para mayor información sobre el diseño de la implementación de hardware como de software con respecto a los diferentes proyectos.
 
 
