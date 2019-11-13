@@ -42,6 +42,8 @@
 #include "SonarEcho.h"
 #include "SonarTrigger.h"
 #include "SonarTimer.h"
+#include "IRSerial.h"
+#include "IRPWM.h"
 
 void AS1_OnError(void);
 /*

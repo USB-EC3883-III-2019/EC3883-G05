@@ -37,6 +37,8 @@
 #include "SonarEcho.h"
 #include "SonarTrigger.h"
 #include "SonarTimer.h"
+#include "IRSerial.h"
+#include "IRPWM.h"
 
 /* Include shared modules, which are used for whole project */
 #include "PE_Types.h"
