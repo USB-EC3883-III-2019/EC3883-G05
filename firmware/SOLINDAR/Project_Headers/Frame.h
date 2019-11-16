@@ -24,6 +24,25 @@
 extern volatile byte is_Data_Ready;
 
 // Struct for Data
+struct DATAM2M {
+    char Msg_High  : 4;
+    char Sync0     : 4;
+    
+    char Msg_Low   : 4;
+    char Sync1     : 4;
+    
+    char Z2        : 3;
+    char Z1        : 3;
+    char Sync2     : 2;
+    
+    char Z4        : 3;
+    char Z3        : 3;
+    char Sync3     : 2;
+
+};
+extern struct DATAM2M DataM2M;
+
+
 struct DATA {
     byte Position;
     union LIDAR {
@@ -59,5 +78,6 @@ extern struct FRAME Frame;
 
 // Function for packing the data into the frame
 void Pack(struct FRAME* frame, struct DATA data);
+char getZone(struct DATAM2M *DataM2M);
 
 #endif /* FRAME_H_ */

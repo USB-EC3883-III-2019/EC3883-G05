@@ -926,7 +926,7 @@ asm(BGND);
         <Interrupt_TxD_priority v="medium priority" />
         <Interrupt_Error v="Vsci1err" />
         <Interrupt_Error_priority v="medium priority" />
-        <Input_buffer_size v="50" />
+        <Input_buffer_size v="4" />
         <Output_buffer_size v="100" />
         <group name="Handshake">
           <boolgroup name="CTS" v="Disabled" />
@@ -1336,7 +1336,20 @@ autoselected pull
     <Properties>
       <Component_name v="IRSerial" />
       <Channel v="SCI2" />
-      <boolgroup name="Interrupt service/event" v="Disabled" />
+      <boolgroup name="Interrupt service/event" v="Enabled">
+        <Interrupt_RxD v="Vsci2rx" />
+        <Interrupt_RxD_priority v="medium priority" />
+        <Interrupt_TxD v="Vsci2tx" />
+        <Interrupt_TxD_priority v="medium priority" />
+        <Interrupt_Error v="Vsci2err" />
+        <Interrupt_Error_priority v="medium priority" />
+        <Input_buffer_size v="8" />
+        <Output_buffer_size v="16" />
+        <group name="Handshake">
+          <boolgroup name="CTS" v="Disabled" />
+          <boolgroup name="RTS" v="Disabled" />
+        </group>
+      </boolgroup>
       <group name="Settings">
         <Parity v="none" />
         <Width v="8 bits" />
@@ -1377,10 +1390,10 @@ autoselected pull
       <DisableEvent v="don&amp;apos;t generate code" />
       <RecvChar v="generate code" />
       <SendChar v="generate code" />
-      <RecvBlock v="don&amp;apos;t generate code" />
-      <SendBlock v="don&amp;apos;t generate code" />
-      <ClearRxBuf v="don&amp;apos;t generate code" />
-      <ClearTxBuf v="don&amp;apos;t generate code" />
+      <RecvBlock v="generate code" />
+      <SendBlock v="generate code" />
+      <ClearRxBuf v="generate code" />
+      <ClearTxBuf v="generate code" />
       <CharsInRxBuf v="don&amp;apos;t generate code" />
       <GetCharsInRxBuf v="generate code" />
       <CharsInTxBuf v="don&amp;apos;t generate code" />
@@ -1406,12 +1419,27 @@ autoselected pull
       <Event_module_name v="Events" />
       <event name="BeforeNewSpeed" v="don&amp;apos;t generate code" />
       <event name="AfterNewSpeed" v="don&amp;apos;t generate code" />
-      <event name="OnError" v="don&amp;apos;t generate code" />
-      <event name="OnRxChar" v="don&amp;apos;t generate code" />
+      <event name="OnError" v="generate code">
+        <Event_procedure_name v="IRSerial_OnError" />
+        <Priority v="same as interrupt" />
+      </event>
+      <event name="OnRxChar" v="generate code">
+        <Event_procedure_name v="IRSerial_OnRxChar" />
+        <Priority v="same as interrupt" />
+      </event>
       <event name="OnRxCharExt" v="don&amp;apos;t generate code" />
-      <event name="OnTxChar" v="don&amp;apos;t generate code" />
-      <event name="OnFullRxBuf" v="don&amp;apos;t generate code" />
-      <event name="OnFreeTxBuf" v="don&amp;apos;t generate code" />
+      <event name="OnTxChar" v="generate code">
+        <Event_procedure_name v="IRSerial_OnTxChar" />
+        <Priority v="same as interrupt" />
+      </event>
+      <event name="OnFullRxBuf" v="generate code">
+        <Event_procedure_name v="IRSerial_OnFullRxBuf" />
+        <Priority v="same as interrupt" />
+      </event>
+      <event name="OnFreeTxBuf" v="generate code">
+        <Event_procedure_name v="IRSerial_OnFreeTxBuf" />
+        <Priority v="same as interrupt" />
+      </event>
       <event name="OnBreak" v="don&amp;apos;t generate code" />
       <event name="OnIdle" v="don&amp;apos;t generate code" />
       <event name="OnTxComplete" v="don&amp;apos;t generate code" />

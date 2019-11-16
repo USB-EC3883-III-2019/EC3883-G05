@@ -55,6 +55,7 @@
 void main(void)
 {
   /* Write your local variable definition here */
+  char zone;
 
   /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
   PE_low_level_init();
@@ -66,8 +67,32 @@ void main(void)
   InitMotor();
   InitSensor();
   InitBluetooth();
-  
-    for(;;){
+
+  for(;;){
+    if(is_Data_Ready){
+      zone = getZone(&DataM2M);
+
+      // If the zone is 0, send the data to the PC otherwise send it to the next tower
+      if(zone == 0){
+        AS1_SendBlock(&DataM2M, 4, NULL);
+      }
+      else{
+
+      /*********************************/
+      // TODO Align the tower transmitter
+
+      /*********************************/
+        IRSerial_SendBlock(&DataM2M, 4, NULL);
+      }
+
+
+      is_Data_Ready = FALSE;
+    }
+  }
+
+
+
+  for(;;){
     if(MotorState == MOTOR_READY){
       // If the motor rotation limit is reached, it changes direction of rotation
       if(StepMotor(&Motor) == STEP_LIMIT){

@@ -15,6 +15,7 @@ volatile char is_Data_Ready;
 
 struct FRAME Frame;
 struct DATA Data;
+struct DATAM2M DataM2M;
 
 /**
  * @brief Pack the data in the frame structure
@@ -36,4 +37,33 @@ void Pack(struct FRAME* frame, struct DATA data) {
     // Byte 3
     frame->Syn_3 = 1;
     frame->Lidar_high = data.Lidar.byte.high;
+}
+
+
+/**
+ * @brief Get the next Zone to send the data. This function clear the zone used
+ * 
+ * @param DataM2M
+ * @return Zone number. If return is 0, there's no more zones
+ */
+char getZone(struct DATAM2M *DataM2M){
+    char zone = 0;
+
+    if(DataM2M->Z1 != 0){
+        zone = DataM2M->Z1;
+        DataM2M->Z1 = 0;
+    }
+    else if(DataM2M->Z2 != 0){
+        zone = DataM2M->Z2;
+        DataM2M->Z2 = 0;
+    }
+    else if(DataM2M->Z3 != 0){
+        zone = DataM2M->Z3;
+        DataM2M->Z3 = 0;
+    }
+    else if(DataM2M->Z4 != 0){
+        zone = DataM2M->Z4;
+        DataM2M->Z4 = 0;
+    }
+    return zone;
 }

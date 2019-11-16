@@ -32,6 +32,7 @@
 #include "Events.h"
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
+#include "string.h"
 #include "Frame.h"
 #include "Motor.h"
 #include "Sensor.h"
@@ -125,6 +126,8 @@ void  AS1_OnFreeTxBuf(void)
 void  AS1_OnFullRxBuf(void)
 {
   /* Write your code here ... */
+  AS1_RecvBlock(&DataM2M, 4, NULL);
+  is_Data_Ready = TRUE;
 }
 
 /*
@@ -220,6 +223,110 @@ void MotorTimer_OnInterrupt(void)
 {
   /* Write your code here ... */
   MotorState = MOTOR_READY;
+}
+
+/*
+** ===================================================================
+**     Event       :  IRSerial_OnError (module Events)
+**
+**     Component   :  IRSerial [AsynchroSerial]
+**     Description :
+**         This event is called when a channel error (not the error
+**         returned by a given method) occurs. The errors can be read
+**         using <GetError> method.
+**         The event is available only when the <Interrupt
+**         service/event> property is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void  IRSerial_OnError(void)
+{
+  /* Write your code here ... */
+}
+
+/*
+** ===================================================================
+**     Event       :  IRSerial_OnRxChar (module Events)
+**
+**     Component   :  IRSerial [AsynchroSerial]
+**     Description :
+**         This event is called after a correct character is received.
+**         The event is available only when the <Interrupt
+**         service/event> property is enabled and either the <Receiver>
+**         property is enabled or the <SCI output mode> property (if
+**         supported) is set to Single-wire mode.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void  IRSerial_OnRxChar(void)
+{
+  /* Write your code here ... */
+}
+
+/*
+** ===================================================================
+**     Event       :  IRSerial_OnTxChar (module Events)
+**
+**     Component   :  IRSerial [AsynchroSerial]
+**     Description :
+**         This event is called after a character is transmitted.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void  IRSerial_OnTxChar(void)
+{
+  /* Write your code here ... */
+}
+
+/*
+** ===================================================================
+**     Event       :  IRSerial_OnFullRxBuf (module Events)
+**
+**     Component   :  IRSerial [AsynchroSerial]
+**     Description :
+**         This event is called when the input buffer is full;
+**         i.e. after reception of the last character 
+**         that was successfully placed into input buffer.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void  IRSerial_OnFullRxBuf(void)
+{
+  /* Write your code here ... */
+  char i;
+  char tmp[8];
+  
+  IRSerial_RecvBlock(&tmp, 8, NULL);
+
+  for(i = 0; i < 4; i++){
+    if((tmp[i] & 0xF0) == 128){
+      DataM2M = (*(struct DATAM2M *) (&tmp[i]));
+      break;
+    } 
+  }
+
+  is_Data_Ready = TRUE;
+}
+
+/*
+** ===================================================================
+**     Event       :  IRSerial_OnFreeTxBuf (module Events)
+**
+**     Component   :  IRSerial [AsynchroSerial]
+**     Description :
+**         This event is called after the last character in output
+**         buffer is transmitted.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void  IRSerial_OnFreeTxBuf(void)
+{
+  /* Write your code here ... */
 }
 
 /* END Events */
