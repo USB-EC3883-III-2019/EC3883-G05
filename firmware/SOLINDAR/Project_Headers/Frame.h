@@ -78,6 +78,5 @@ extern struct FRAME Frame;
 
 // Function for packing the data into the frame
 void Pack(struct FRAME* frame, struct DATA data);
-char getZone(struct DATAM2M *DataM2M);
 
 #endif /* FRAME_H_ */

@@ -51,11 +51,13 @@
 #include "Motor.h"
 #include "Sensor.h"
 #include "Bluetooth.h"
+#include "Tower.h"
 
 void main(void)
 {
   /* Write your local variable definition here */
   char zone;
+  int distance;
 
   /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
   PE_low_level_init();
@@ -67,6 +69,7 @@ void main(void)
   InitMotor();
   InitSensor();
   InitBluetooth();
+  InitTower();
 
   for(;;){
     if(is_Data_Ready){
@@ -77,46 +80,42 @@ void main(void)
         AS1_SendBlock(&DataM2M, 4, NULL);
       }
       else{
+        setZone(&Motor, ZonesDef[zone]);  // Set the limits of the tower's zone
+        distance = 0;                     // Clear the distance variable
 
-      /*********************************/
-      // TODO Align the tower transmitter
+        for(;;){
+          if(MotorState == MOTOR_READY){
+            MotorState = MOTOR_BUSY;
 
-      /*********************************/
+            if(StepMotor(&Motor) != STEP_LIMIT){
+              if((Motor.StepCount > ZonesDef[zone].LowerLimit) && (Motor.StepCount < ZonesDef[zone].UpperLimit)){
+                  MeasureSensors();                     // Start to measure the sensors
+                  Cpu_SetWaitMode();                    // Stop the CPU's clock
+                  while(SENSORS_STATE != SENSORS_DONE); // Wait for the data is ready
+                  
+                  if(LIDAR_DATA > distance){            // Save the maximum Lidar value (minimum distance) within the zone and its position
+                    distance = LIDAR_DATA;
+                    POSITION_DATA = MOTOR_STEP_COUNT;
+                  }
+              }
+            }
+            else{
+              break;
+            }
+            Cpu_SetWaitMode();
+          }
+        }
+
+        // TODO Move the tower to the shortest distance
+        for(;;){
+
+        }
+
         IRSerial_SendBlock(&DataM2M, 4, NULL);
       }
 
-
       is_Data_Ready = FALSE;
     }
-  }
-
-
-
-  for(;;){
-    if(MotorState == MOTOR_READY){
-      // If the motor rotation limit is reached, it changes direction of rotation
-      if(StepMotor(&Motor) == STEP_LIMIT){
-        if(Motor.Rotation == CW_ROTATION){
-          SetOrientation(&Motor, CCW_ROTATION);
-        }
-        else{
-          SetOrientation(&Motor, CW_ROTATION);
-        }
-      }
-
-      MeasureSensors();
-      POSITION_DATA = MOTOR_STEP_COUNT;
-      
-      Cpu_SetWaitMode();
-
-      while(SENSORS_STATE != SENSORS_DONE);       // Wait for the data is ready
-
-      Pack(&Frame, Data);                         // Pack the data
-      AS1_SendBlock(&Frame, FRAME_SIZE, NULL);    // Send the data
-      
-      MotorState = MOTOR_BUSY;
-    }
-      Cpu_SetWaitMode();
   }
 
   /*** Don't write any code pass this line, or it will be deleted during code generation. ***/
