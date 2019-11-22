@@ -106,9 +106,24 @@ void main(void)
           }
         }
 
-        // TODO Move the tower to the shortest distance
-        for(;;){
+        SetCCWLimit(&Motor, POSITION_DATA);
+        SetCWLimit(&Motor, POSITION_DATA);
 
+        if(Motor.Rotation == CW_ROTATION){
+          SetOrientation(&Motor, CCW_ROTATION);
+        }
+        else{
+          SetOrientation(&Motor, CW_ROTATION);
+        }
+
+        for(;;){
+          if(MotorState == MOTOR_READY){
+            MotorState = MOTOR_BUSY;
+
+            if(StepMotor(&Motor) == STEP_LIMIT){
+              break;
+            }
+          }
         }
 
         IRSerial_SendBlock(&DataM2M, 4, NULL);

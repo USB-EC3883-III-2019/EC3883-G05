@@ -1344,7 +1344,7 @@ autoselected pull
         <Interrupt_Error v="Vsci2err" />
         <Interrupt_Error_priority v="medium priority" />
         <Input_buffer_size v="8" />
-        <Output_buffer_size v="16" />
+        <Output_buffer_size v="8" />
         <group name="Handshake">
           <boolgroup name="CTS" v="Disabled" />
           <boolgroup name="RTS" v="Disabled" />
