@@ -15,7 +15,7 @@ volatile char is_Data_Ready;
 
 struct FRAME Frame;
 struct DATA Data;
-struct DATAM2M DataM2M;
+struct DATAM2M DataM2M, DataP2M;
 
 /**
  * @brief Pack the data in the frame structure

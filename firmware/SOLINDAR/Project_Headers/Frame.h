@@ -41,6 +41,7 @@ struct DATAM2M {
 
 };
 extern struct DATAM2M DataM2M;
+extern struct DATAM2M DataP2M;
 
 
 struct DATA {

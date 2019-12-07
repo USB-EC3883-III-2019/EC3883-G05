@@ -44,6 +44,7 @@
 #include "SonarTimer.h"
 #include "IRSerial.h"
 #include "IRPWM.h"
+#include "TI1.h"
 
 void AS1_OnError(void);
 /*

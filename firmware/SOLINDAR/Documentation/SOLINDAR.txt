@@ -154,6 +154,20 @@ Module "IRPWM"     (component PWM)
                 16-bit unsigned integer number. The method is available only if it is not selected list of predefined values in 
                 <Starting pulse width> property.
 
+Module "TI1"       (component TimerInt)
+   - TI1_SetPeriodTicks16 -This method sets the new period of the generated events. The period is expressed in CPU [ticks] as a 
+                16-bit unsigned integer number. This method is available only if the runtime setting type 'from interval' is 
+                selected in the <Timing dialog box> in the Runtime setting area.
+   - TI1_SetPeriodTicks32 -This method sets the new period of the generated events. The period is expressed in CPU [ticks] as a 
+                32-bit unsigned integer number. This method is available only if the runtime setting type 'from interval' is 
+                selected in the <Timing dialog box> in the Runtime setting area.
+   - TI1_SetPeriodUS -This method sets the new period of the generated events. The period is expressed in [microseconds] as a 
+                16-bit unsigned integer number. This method is available only if the runtime setting type 'from interval' is 
+                selected in the <Timing dialog box> in the Runtime setting area.
+   - TI1_SetPeriodMS -This method sets the new period of the generated events. The period is expressed in [milliseconds] as a 
+                16-bit unsigned integer number. This method is available only if the runtime setting type 'from interval' is 
+                selected in the <Timing dialog box> in the Runtime setting area.
+
 Module "Cpu"       (component MC9S08QE128_80)
    - Cpu_EnableInt -Enables maskable interrupts
    - Cpu_DisableInt -Disables maskable interrupts

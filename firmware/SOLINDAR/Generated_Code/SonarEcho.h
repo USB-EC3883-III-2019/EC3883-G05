@@ -6,7 +6,7 @@
 **     Component   : Capture
 **     Version     : Component 02.223, Driver 01.30, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-11-18, 13:57, # CodeGen: 93
+**     Date/Time   : 2019-12-04, 12:09, # CodeGen: 97
 **     Abstract    :
 **         This component "Capture" simply implements the capture function
 **         of timer. The counter counts the same way as in free run mode. On
@@ -18,7 +18,7 @@
 **
 **         Timer
 **             Timer                   : TPM2
-**             Counter shared          : No
+**             Counter shared          : Yes
 **
 **         High speed mode
 **             Prescaler               : divide-by-2
@@ -136,9 +136,11 @@
 #endif
 
 
+extern volatile word SonarEcho_CntrState; /* Content of counter */
+
 
 #define SonarEcho_Reset() \
-  (TPM2CNTH = 0U , (byte)ERR_OK)
+  (SonarEcho_CntrState = TPM2CNT , (byte)ERR_OK)
 /*
 ** ===================================================================
 **     Method      :  SonarEcho_Reset (component Capture)
@@ -156,7 +158,9 @@
 
 #define SonarEcho_GetCaptureValue(Value) \
   /*lint -save  -e926 -e927 -e928 -e929 Disable MISRA rule (11.4) checking. */\
-  (*(SonarEcho_TCapturedValue*)(Value) = TPM2C2V , (byte)ERR_OK) \
+  (((*(SonarEcho_TCapturedValue*)(Value) = TPM2C2V), \
+  (*(SonarEcho_TCapturedValue*)(Value) -= SonarEcho_CntrState)), \
+  ERR_OK) \
   /*lint -restore Enable MISRA rule (11.4) checking. */
 /*
 ** ===================================================================

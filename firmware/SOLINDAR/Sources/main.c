@@ -39,6 +39,7 @@
 #include "SonarTimer.h"
 #include "IRSerial.h"
 #include "IRPWM.h"
+#include "TI1.h"
 
 /* Include shared modules, which are used for whole project */
 #include "PE_Types.h"
@@ -57,7 +58,7 @@ void main(void)
 {
   /* Write your local variable definition here */
   char zone;
-  int distance;
+  struct DATAM2M data_tmp;
 
   /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
   PE_low_level_init();
@@ -70,62 +71,43 @@ void main(void)
   InitSensor();
   InitBluetooth();
   InitTower();
-
+ 
   for(;;){
     if(is_Data_Ready){
-      zone = getZone(&DataM2M);
 
-      // If the zone is 0, send the data to the PC otherwise send it to the next tower
-      if(zone == 0){
-        AS1_SendBlock(&DataM2M, 4, NULL);
+      if((getZone(&DataP2M) != 0) && (TowerMode == MASTER)){
+        setZone(&Motor, ZonesDef[zone = getZone(&DataP2M)]);  // Set the limits of the tower's zone
       }
-      else{
-        setZone(&Motor, ZonesDef[zone]);  // Set the limits of the tower's zone
-        distance = 0;                     // Clear the distance variable
+      else if((getZone(&DataM2M) != 0) && (TowerMode == SLAVE)){
+        setZone(&Motor, ZonesDef[zone = getZone(&DataM2M)]);  // Set the limits of the tower's zone
+      }
 
+      // It doesn't move if the zone is zero
+      if(zone != 0){
+        // Move the motor
         for(;;){
           if(MotorState == MOTOR_READY){
             MotorState = MOTOR_BUSY;
-
-            if(StepMotor(&Motor) != STEP_LIMIT){
-              if((Motor.StepCount > ZonesDef[zone].LowerLimit) && (Motor.StepCount < ZonesDef[zone].UpperLimit)){
-                  MeasureSensors();                     // Start to measure the sensors
-                  Cpu_SetWaitMode();                    // Stop the CPU's clock
-                  while(SENSORS_STATE != SENSORS_DONE); // Wait for the data is ready
-                  
-                  if(LIDAR_DATA > distance){            // Save the maximum Lidar value (minimum distance) within the zone and its position
-                    distance = LIDAR_DATA;
-                    POSITION_DATA = MOTOR_STEP_COUNT;
-                  }
-              }
-            }
-            else{
-              break;
-            }
-            Cpu_SetWaitMode();
-          }
-        }
-
-        SetCCWLimit(&Motor, POSITION_DATA);
-        SetCWLimit(&Motor, POSITION_DATA);
-
-        if(Motor.Rotation == CW_ROTATION){
-          SetOrientation(&Motor, CCW_ROTATION);
-        }
-        else{
-          SetOrientation(&Motor, CW_ROTATION);
-        }
-
-        for(;;){
-          if(MotorState == MOTOR_READY){
-            MotorState = MOTOR_BUSY;
-
+            
             if(StepMotor(&Motor) == STEP_LIMIT){
               break;
             }
           }
         }
+      }
 
+      if(TowerMode == MASTER){
+        data_tmp = DataP2M;
+        clearZone(&data_tmp);
+        IRSerial_SendBlock(&data_tmp, 4, NULL);
+        // If the zone is 0, send the data to the PC
+        if(getZone(&DataM2M) == 0){
+          AS1_SendBlock(&DataM2M, 4, NULL);
+        }
+      }
+      else{
+        data_tmp = DataM2M;
+        clearZone(&data_tmp);
         IRSerial_SendBlock(&DataM2M, 4, NULL);
       }
 

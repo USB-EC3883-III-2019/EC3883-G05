@@ -36,6 +36,7 @@
 #include "Frame.h"
 #include "Motor.h"
 #include "Sensor.h"
+#include "Tower.h"
 
 /*
 ** ===================================================================
@@ -126,7 +127,9 @@ void  AS1_OnFreeTxBuf(void)
 void  AS1_OnFullRxBuf(void)
 {
   /* Write your code here ... */
-  AS1_RecvBlock(&DataM2M, 4, NULL);
+  AS1_RecvBlock(&DataP2M, 4, NULL);
+  TowerMode = MASTER;
+  TI1_SetPeriodMS(2000);
   is_Data_Ready = TRUE;
 }
 
@@ -287,7 +290,7 @@ void  IRSerial_OnTxChar(void)
 **
 **     Component   :  IRSerial [AsynchroSerial]
 **     Description :
-**         This event is called when the input buffer is full;
+**         This eventclea is called when the input buffer is full;
 **         i.e. after reception of the last character 
 **         that was successfully placed into input buffer.
 **     Parameters  : None
@@ -308,7 +311,6 @@ void  IRSerial_OnFullRxBuf(void)
       break;
     } 
   }
-
   is_Data_Ready = TRUE;
 }
 
@@ -327,6 +329,26 @@ void  IRSerial_OnFullRxBuf(void)
 void  IRSerial_OnFreeTxBuf(void)
 {
   /* Write your code here ... */
+}
+
+/*
+** ===================================================================
+**     Event       :  TI1_OnInterrupt (module Events)
+**
+**     Component   :  TI1 [TimerInt]
+**     Description :
+**         When a timer interrupt occurs this event is called (only
+**         when the component is enabled - <Enable> and the events are
+**         enabled - <EnableEvent>). This event is enabled only if a
+**         <interrupt service/event> is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void TI1_OnInterrupt(void)
+{
+  /* Write your code here ... */
+  TowerMode = SLAVE;
 }
 
 /* END Events */

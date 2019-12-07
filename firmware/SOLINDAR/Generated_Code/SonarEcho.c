@@ -6,7 +6,7 @@
 **     Component   : Capture
 **     Version     : Component 02.223, Driver 01.30, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-11-18, 13:57, # CodeGen: 93
+**     Date/Time   : 2019-12-04, 12:09, # CodeGen: 97
 **     Abstract    :
 **         This component "Capture" simply implements the capture function
 **         of timer. The counter counts the same way as in free run mode. On
@@ -18,7 +18,7 @@
 **
 **         Timer
 **             Timer                   : TPM2
-**             Counter shared          : No
+**             Counter shared          : Yes
 **
 **         High speed mode
 **             Prescaler               : divide-by-2
@@ -114,6 +114,7 @@
 #include "SonarEcho.h"
 
 
+volatile word SonarEcho_CntrState;     /* Content of counter */
 
 
 /*
@@ -201,12 +202,11 @@ void SonarEcho_Init(void)
   setReg8(TPM2CNTH, 0x00U);            /* Reset counter */ 
   /* TPM2C2V: BIT15=0,BIT14=0,BIT13=0,BIT12=0,BIT11=0,BIT10=0,BIT9=0,BIT8=0,BIT7=0,BIT6=0,BIT5=0,BIT4=0,BIT3=0,BIT2=0,BIT1=0,BIT0=0 */
   setReg16(TPM2C2V, 0x00U);            /* Clear capture register */ 
+  SonarEcho_CntrState = 0x00U;         /* Clear variable */
   /* TPM2SC: PS2=0,PS1=0,PS0=1 */
   clrSetReg8Bits(TPM2SC, 0x06U, 0x01U); /* Set prescaler register */ 
   /* TPM2C2SC: CH2F=0,CH2IE=1,MS2B=0,MS2A=0,ELS2B=1,ELS2A=1,??=0,??=0 */
   setReg8(TPM2C2SC, 0x4CU);            /* Enable both interrupt and capture function */ 
-  /* TPM2SC: CLKSB=1,CLKSA=0 */
-  clrSetReg8Bits(TPM2SC, 0x08U, 0x10U); /* Run counter */ 
 }
 
 
