@@ -24,11 +24,11 @@ lidar_l     = single(bitand(byte2, Mask_lidar_l));
 lidar_h     = single(bitand(byte3, Mask_lidar_h));
 PositionRAW = bitand(byte0, Mask_position);
 if PositionRAW >= 32
-   PositionRAW = bitor(PositionRAW, Mask_Position2);
-   PositionRAW = -1.*single(bitcmp(PositionRAW) + 1);
+    PositionRAW = bitor(PositionRAW, Mask_Position2);
+    PositionRAW = -1.*single(bitcmp(PositionRAW) + 1);
 end
 PositionRAW = single(PositionRAW);
-    
+
 SonarRAW = sonar_h/32+ sonar_l*4;
 LidarRAW = lidar_h + lidar_l*128;
 end
