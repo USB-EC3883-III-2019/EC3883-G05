@@ -108,7 +108,8 @@ void main(void)
       else{
         data_tmp = DataM2M;
         clearZone(&data_tmp);
-        IRSerial_SendBlock(&DataM2M, 4, NULL);
+        IRSerial_SendBlock(&data_tmp, 4, NULL);
+        AS1_SendBlock(&data_tmp, 4, NULL);
       }
 
       is_Data_Ready = FALSE;
